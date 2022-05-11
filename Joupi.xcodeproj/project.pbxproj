@@ -345,7 +345,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Joupi/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Ini butuh kamera loh";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Ini butuh kamera loh test";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Ini butuh Gallery loh";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -377,7 +377,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Joupi/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Ini butuh kamera loh";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Ini butuh kamera loh test";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Ini butuh Gallery loh";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
