@@ -11,6 +11,14 @@
 		FD910860282B93DA008CC122 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91085F282B93DA008CC122 /* ContentView.swift */; };
 		FD910862282B93DC008CC122 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD910861282B93DC008CC122 /* Assets.xcassets */; };
 		FD910865282B93DC008CC122 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD910864282B93DC008CC122 /* Preview Assets.xcassets */; };
+		FD910871282B9704008CC122 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD910870282B9704008CC122 /* MainScreen.swift */; };
+		FD910873282B9718008CC122 /* JournalAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD910872282B9718008CC122 /* JournalAdd.swift */; };
+		FD910875282B9726008CC122 /* JournalDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD910874282B9726008CC122 /* JournalDetail.swift */; };
+		FD910877282B972F008CC122 /* JournalEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD910876282B972F008CC122 /* JournalEdit.swift */; };
+		FD910879282B97CF008CC122 /* JournalImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD910878282B97CF008CC122 /* JournalImageCard.swift */; };
+		FD91087B282B97EC008CC122 /* JournalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91087A282B97EC008CC122 /* JournalCard.swift */; };
+		FD91087D282B9801008CC122 /* ImageCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91087C282B9801008CC122 /* ImageCarousel.swift */; };
+		FD91087F282B99FA008CC122 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91087E282B99FA008CC122 /* CameraView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +27,15 @@
 		FD91085F282B93DA008CC122 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FD910861282B93DC008CC122 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD910864282B93DC008CC122 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FD910870282B9704008CC122 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
+		FD910872282B9718008CC122 /* JournalAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalAdd.swift; sourceTree = "<group>"; };
+		FD910874282B9726008CC122 /* JournalDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalDetail.swift; sourceTree = "<group>"; };
+		FD910876282B972F008CC122 /* JournalEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEdit.swift; sourceTree = "<group>"; };
+		FD910878282B97CF008CC122 /* JournalImageCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalImageCard.swift; sourceTree = "<group>"; };
+		FD91087A282B97EC008CC122 /* JournalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCard.swift; sourceTree = "<group>"; };
+		FD91087C282B9801008CC122 /* ImageCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCarousel.swift; sourceTree = "<group>"; };
+		FD91087E282B99FA008CC122 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		FD910880282B9A95008CC122 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +68,10 @@
 		FD91085C282B93DA008CC122 /* Joupi */ = {
 			isa = PBXGroup;
 			children = (
+				FD910880282B9A95008CC122 /* Info.plist */,
+				FD91086D282B95D2008CC122 /* Models */,
+				FD91086C282B9595008CC122 /* Resources */,
+				FD91086B282B9587008CC122 /* Views */,
 				FD91085D282B93DA008CC122 /* JoupiApp.swift */,
 				FD91085F282B93DA008CC122 /* ContentView.swift */,
 				FD910861282B93DC008CC122 /* Assets.xcassets */,
@@ -65,6 +86,51 @@
 				FD910864282B93DC008CC122 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FD91086B282B9587008CC122 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FD91086F282B964B008CC122 /* Shareds */,
+				FD91086E282B9630008CC122 /* Screens */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FD91086C282B9595008CC122 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FD91086D282B95D2008CC122 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FD91086E282B9630008CC122 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				FD910870282B9704008CC122 /* MainScreen.swift */,
+				FD910872282B9718008CC122 /* JournalAdd.swift */,
+				FD910874282B9726008CC122 /* JournalDetail.swift */,
+				FD910876282B972F008CC122 /* JournalEdit.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		FD91086F282B964B008CC122 /* Shareds */ = {
+			isa = PBXGroup;
+			children = (
+				FD910878282B97CF008CC122 /* JournalImageCard.swift */,
+				FD91087A282B97EC008CC122 /* JournalCard.swift */,
+				FD91087C282B9801008CC122 /* ImageCarousel.swift */,
+				FD91087E282B99FA008CC122 /* CameraView.swift */,
+			);
+			path = Shareds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +203,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD910871282B9704008CC122 /* MainScreen.swift in Sources */,
+				FD91087B282B97EC008CC122 /* JournalCard.swift in Sources */,
+				FD910875282B9726008CC122 /* JournalDetail.swift in Sources */,
+				FD91087F282B99FA008CC122 /* CameraView.swift in Sources */,
+				FD91087D282B9801008CC122 /* ImageCarousel.swift in Sources */,
 				FD910860282B93DA008CC122 /* ContentView.swift in Sources */,
 				FD91085E282B93DA008CC122 /* JoupiApp.swift in Sources */,
+				FD910879282B97CF008CC122 /* JournalImageCard.swift in Sources */,
+				FD910873282B9718008CC122 /* JournalAdd.swift in Sources */,
+				FD910877282B972F008CC122 /* JournalEdit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +344,9 @@
 				DEVELOPMENT_TEAM = FANN368M5W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Joupi/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Ini butuh kamera loh";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Ini butuh Gallery loh";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +376,9 @@
 				DEVELOPMENT_TEAM = FANN368M5W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Joupi/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Ini butuh kamera loh";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Ini butuh Gallery loh";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
