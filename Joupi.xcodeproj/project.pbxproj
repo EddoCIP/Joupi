@@ -19,6 +19,7 @@
 		FD91087B282B97EC008CC122 /* JournalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91087A282B97EC008CC122 /* JournalCard.swift */; };
 		FD91087D282B9801008CC122 /* ImageCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91087C282B9801008CC122 /* ImageCarousel.swift */; };
 		FD91087F282B99FA008CC122 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91087E282B99FA008CC122 /* CameraView.swift */; };
+		FD910882282BF67C008CC122 /* ObservableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD910881282BF67C008CC122 /* ObservableScrollView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +36,7 @@
 		FD91087A282B97EC008CC122 /* JournalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCard.swift; sourceTree = "<group>"; };
 		FD91087C282B9801008CC122 /* ImageCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCarousel.swift; sourceTree = "<group>"; };
 		FD91087E282B99FA008CC122 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
-		FD910880282B9A95008CC122 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FD910881282BF67C008CC122 /* ObservableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableScrollView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +69,6 @@
 		FD91085C282B93DA008CC122 /* Joupi */ = {
 			isa = PBXGroup;
 			children = (
-				FD910880282B9A95008CC122 /* Info.plist */,
 				FD91086D282B95D2008CC122 /* Models */,
 				FD91086C282B9595008CC122 /* Resources */,
 				FD91086B282B9587008CC122 /* Views */,
@@ -129,6 +129,7 @@
 				FD91087A282B97EC008CC122 /* JournalCard.swift */,
 				FD91087C282B9801008CC122 /* ImageCarousel.swift */,
 				FD91087E282B99FA008CC122 /* CameraView.swift */,
+				FD910881282BF67C008CC122 /* ObservableScrollView.swift */,
 			);
 			path = Shareds;
 			sourceTree = "<group>";
@@ -203,6 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD910882282BF67C008CC122 /* ObservableScrollView.swift in Sources */,
 				FD910871282B9704008CC122 /* MainScreen.swift in Sources */,
 				FD91087B282B97EC008CC122 /* JournalCard.swift in Sources */,
 				FD910875282B9726008CC122 /* JournalDetail.swift in Sources */,
@@ -345,6 +347,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Joupi/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Ini butuh kamera loh";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Ini butuh Gallery loh";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -377,6 +380,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Joupi/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Ini butuh kamera loh";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Ini butuh Gallery loh";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
