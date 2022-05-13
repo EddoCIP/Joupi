@@ -39,7 +39,8 @@ struct MainScreen: View {
                     Rectangle()
                         .foregroundColor(.brown)
                         .frame(width: screenWidth, height: screenHeight)
-                        .cornerRadius(10)
+                        .cornerRadius(25)
+                        .shadow(color: .black, radius: 5)
                     VStack {
                         ObservableScrollView(scrollOffset: $scrollOffset) { _ in
                             LazyVGrid(columns: gridColumns) {
