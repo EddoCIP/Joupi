@@ -9,27 +9,29 @@ import SwiftUI
 
 struct ImageCarousel: View {
     @State var index: Int = 0
+    @State var isShowCamera: Bool = false
+    @State var image: Image?
     
-    var additionalTab: () -> Content
-//    var views : [View] = []
-    
-//    init(v: View)
+    var items: [Any] = [ImageCard.self, ImageCard.self, ImageCard.self, AddImageCard.self]
     
     var body: some View {
         VStack {
             TabView(selection: $index) {
-                ForEach(0..<3, id: \.self) { index in
-                    ImageCard()
+                ForEach(0..<items.count) { index in
+                    self.buildView(types: self.items, index: index)
                 }
-                ImageCard()
-                    .tabItem {
-//                        Image(systemName: "2.square.fill")
-//                        Text("Second")
-                    }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
         }
         .frame(height: 200)
+    }
+    
+    func buildView(types: [Any], index: Int) -> AnyView {
+        switch types[index].self {
+        case is ImageCard.Type: return AnyView( ImageCard() )
+        case is AddImageCard.Type: return AnyView( AddImageCard() )
+        default: return AnyView(EmptyView())
+        }
     }
 }
 
@@ -39,6 +41,18 @@ struct ImageCard: View {
             .fill(Color.pink)
             .frame(height: 200)
             .border(Color.black)
+            .padding()
+    }
+}
+
+struct AddImageCard: View {
+    var body: some View {
+        Rectangle()
+            .frame(height: 200)
+            .border(Color.black)
+            .overlay(content: {
+                Image(systemName: "camera")
+            })
             .padding()
     }
 }
