@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Journal" representedClassName="Journal" syncable="YES"/>
+    <entity name="Journal" representedClassName="Journal" syncable="YES">
+        <attribute name="altitude" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="beansFlavorNote" optional="YES" attributeType="String"/>
+        <attribute name="coffeeAmount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="coffeeName" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="experienceRating" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="imageUrls" optional="YES" attributeType="Transformable"/>
+        <attribute name="memo" optional="YES" attributeType="String"/>
+        <attribute name="method" optional="YES" attributeType="String"/>
+        <attribute name="process" optional="YES" attributeType="String"/>
+        <attribute name="roastDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="roastLevel" optional="YES" attributeType="String"/>
+        <attribute name="temperature" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="variety" optional="YES" attributeType="String"/>
+        <attribute name="waterAmount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <elements>
-        <element name="Journal" positionX="-63" positionY="-18" width="128" height="29"/>
+        <element name="Journal" positionX="-63" positionY="-18" width="128" height="269"/>
     </elements>
 </model>
