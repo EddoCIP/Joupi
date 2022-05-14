@@ -9,8 +9,6 @@ import SwiftUI
 
 struct CameraView: View {
     @State private var showImagePicker: Bool = false
-    @State private var image: Image? = nil
-    @State private var imageUrl: String = ""
     @State private var urls : [String] = []
     
     var body: some View {
