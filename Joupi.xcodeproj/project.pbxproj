@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD37D306282FB42C000F248E /* JournalModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FD37D304282FB42C000F248E /* JournalModel.xcdatamodeld */; };
 		FD91085E282B93DA008CC122 /* JoupiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91085D282B93DA008CC122 /* JoupiApp.swift */; };
 		FD910860282B93DA008CC122 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91085F282B93DA008CC122 /* ContentView.swift */; };
 		FD910862282B93DC008CC122 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD910861282B93DC008CC122 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FD37D305282FB42C000F248E /* JournalModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JournalModel.xcdatamodel; sourceTree = "<group>"; };
 		FD91085A282B93DA008CC122 /* Joupi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Joupi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD91085D282B93DA008CC122 /* JoupiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoupiApp.swift; sourceTree = "<group>"; };
 		FD91085F282B93DA008CC122 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		FD91086C282B9595008CC122 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FD37D304282FB42C000F248E /* JournalModel.xcdatamodeld */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				FD910871282B9704008CC122 /* MainScreen.swift in Sources */,
 				FD91087B282B97EC008CC122 /* JournalCard.swift in Sources */,
 				FD910875282B9726008CC122 /* JournalDetail.swift in Sources */,
+				FD37D306282FB42C000F248E /* JournalModel.xcdatamodeld in Sources */,
 				FD91087F282B99FA008CC122 /* CameraView.swift in Sources */,
 				FD91087D282B9801008CC122 /* ImageCarousel.swift in Sources */,
 				FD910860282B93DA008CC122 /* ContentView.swift in Sources */,
@@ -419,6 +423,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FD37D304282FB42C000F248E /* JournalModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FD37D305282FB42C000F248E /* JournalModel.xcdatamodel */,
+			);
+			currentVersion = FD37D305282FB42C000F248E /* JournalModel.xcdatamodel */;
+			path = JournalModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FD910852282B93DA008CC122 /* Project object */;
 }
