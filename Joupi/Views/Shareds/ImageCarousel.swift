@@ -27,13 +27,14 @@ struct ImageCarousel: View {
 
 struct ImageCard: View {
     var url: String
+    var size: CGFloat = 200
     
     var body: some View {
         let pngURL = URL(fileURLWithPath: url)
         let data = try! Data(contentsOf: pngURL, options: [.mappedIfSafe, .uncached])
         Image(uiImage: UIImage(data: data)!)
             .resizable()
-            .frame(width: 200, height: 200)
+            .frame(width: size, height: size)
     }
 }
 
