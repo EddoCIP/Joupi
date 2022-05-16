@@ -15,8 +15,12 @@ struct ImageCarousel: View {
     var body: some View {
         VStack {
             TabView(selection: $index) {
-                ForEach($imageUrls, id: \.self) { $url in
-                    ImageCard(url: url)
+                if (imageUrls.count > 0) {
+                    ForEach(Array(zip(imageUrls.indices, imageUrls)), id: \.0) { index, url in
+                        ImageCard(url: url)
+                    }
+                } else {
+                    Image("EmptyImage")
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))

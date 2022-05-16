@@ -10,19 +10,20 @@ import SwiftUI
 
 class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     @Binding var isShown: Bool
-//    @Binding var image: Image?
-//    @Binding var imageUrl: String
+    @Binding var image: Image?
+    @Binding var imageUrl: String
     @Binding var imageUrls: [String]
     
-//    init(isShown: Binding<Bool>, image: Binding<Image?>, imageUrl: Binding<String>) {
-//        _isShown = isShown
-//        _image = image
-//        _imageUrl = imageUrl
-//    }
-    init(isShown: Binding<Bool>, imageUrls: Binding<[String]>) {
+    init(isShown: Binding<Bool>, image: Binding<Image?>, imageUrl: Binding<String>, imageUrls: Binding<[String]>) {
         _isShown = isShown
+        _image = image
+        _imageUrl = imageUrl
         _imageUrls = imageUrls
     }
+//    init(isShown: Binding<Bool>, imageUrls: Binding<[String]>) {
+//        _isShown = isShown
+//        _imageUrls = imageUrls
+//    }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let uiImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
@@ -42,9 +43,9 @@ class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImageP
                 print("Unable to Write Image Data to Disk")
             }
         }
-//        image = Image(uiImage: uiImage)
+        image = Image(uiImage: uiImage)
         isShown = false
-//        imageUrl = url.path
+        imageUrl = url.path
         imageUrls.append(url.path)
     }
     
@@ -56,8 +57,8 @@ class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImageP
 struct ImagePicker: UIViewControllerRepresentable {
     
     @Binding var isShown: Bool
-//    @Binding var image: Image?
-//    @Binding var imageUrl: String
+    @Binding var image: Image?
+    @Binding var imageUrl: String
     @Binding var imageUrls: [String]
     
     var pickerMode: Int = 0 // 0 -> album, 1 -> camera
@@ -66,8 +67,8 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
     
     func makeCoordinator() -> ImagePickerCoordinator {
-//        return ImagePickerCoordinator(isShown: $isShown, image: $image, imageUrl: $imageUrl)
-        return ImagePickerCoordinator(isShown: $isShown, imageUrls: $imageUrls)
+        return ImagePickerCoordinator(isShown: $isShown, image: $image, imageUrl: $imageUrl, imageUrls: $imageUrls)
+//        return ImagePickerCoordinator(isShown: $isShown, imageUrls: $imageUrls)
     }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
