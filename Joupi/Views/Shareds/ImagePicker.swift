@@ -31,7 +31,7 @@ class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImageP
         // Obtaining the Location of the Documents Directory
         let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         
-        let fileName = "\(formatDateToString(date: Date.now, format: "YYYY-MM-DD-HH:mm:ss.SSSS")).png"
+        let fileName = "\(formatDateToString(date: Date.now, format: "YYYY-MM-dd-HH:mm:ss.SSSS")).png"
 
         // Create URL
         let url = documents.appendingPathComponent(fileName)

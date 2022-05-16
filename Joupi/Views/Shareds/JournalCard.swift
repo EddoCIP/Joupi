@@ -8,21 +8,18 @@
 import SwiftUI
 
 struct JournalCard: View {
-    var imageUrls : [String] = ["", ""]
-    let width: Int = 200
-    let height: Int = 300
+    var imageUrls : [String]
+    var size: CGFloat
     
     var body: some View {
         Rectangle()
+            .frame(width: size, height: size + (size/2))
             .foregroundColor(.red)
             .cornerRadius(25)
             .shadow(radius: 10)
             .overlay {
                 VStack {
-//                    Image(systemName: "camera")
-//                        .resizable()
-//                        .frame(width: CGFloat(width * 90) / 100, height: CGFloat(width * 90) / 100)
-                    ImageJournal(imageUrls: imageUrls)
+                    ImageJournal(imageUrls: imageUrls, size: size)
                     Text("Testing")
                         .font(.title)
                     Text("dari mana")
@@ -34,29 +31,27 @@ struct JournalCard: View {
 
 struct ImageJournal: View {
     var imageUrls: [String] = []
+    var size: CGFloat
+    
     var body: some View {
         if imageUrls.count == 0 {
-            Image(systemName: "camera")
+            Image("EmptyImage")
                 .resizable()
-                .frame(width: 200, height: 200)
+                .frame(width: size * 0.9, height: size * 0.9)
         } else {
             ZStack {
                 if imageUrls.count == 1 {
-//                    ImageCard(url: imageUrls[0], size: 200)
+                    ImageCard(url: imageUrls[0])
                 } else {
                     Rectangle()
                         .foregroundColor(.gray)
-                        .frame(width: 200, height: 200)
+                        .frame(width: size * 0.95, height: size * 0.95)
                         .rotationEffect(.degrees(5))
                     Rectangle()
                         .foregroundColor(.blue)
-                        .frame(width: 200, height: 200)
+                        .frame(width: size * 0.8, height: size * 0.8)
                         .rotationEffect(.degrees(10))
-                    Image(systemName: "camera")
-                        .resizable()
-                        .frame(width: 200, height: 200)
-                        .background(.yellow)
-//                    ImageCard(url: imageUrls[0], size: 200)
+                    ImageCard(url: imageUrls.first ?? "", size: size * 0.9)
                 }
             }
         }
@@ -65,6 +60,6 @@ struct ImageJournal: View {
 
 struct JournalCard_Previews: PreviewProvider {
     static var previews: some View {
-        JournalCard()
+        JournalCard(imageUrls: ["", ""], size: 200.0)
     }
 }
