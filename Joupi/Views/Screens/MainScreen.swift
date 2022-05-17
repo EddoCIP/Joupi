@@ -14,8 +14,6 @@ struct MainScreen: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color("TitleBarColor")
-                    .ignoresSafeArea()
                 List {
                     ForEach(searchResults, id: \.self) { item in
                         NavigationLink(destination: Text(item)) {
@@ -50,10 +48,8 @@ struct MainScreen: View {
                 .zIndex(1)
                 .padding()
             }
-            .navigationTitle(
-                Text("My Coffee Journal")
-                    .foregroundColor(.blue)
-            )
+            .navigationTitle("My Coffee Journal")
+            .navigationBarColor(UIColor(named: "TitleBarColor"), UIColor(named: "TitleFontColor"))
             .navigationBarTitleDisplayMode(.large)
             .searchable(text: $searchKeyword, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
         }
