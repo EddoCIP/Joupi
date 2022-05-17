@@ -13,15 +13,15 @@ struct JournalCard: View {
     
     var body: some View {
         Rectangle()
-            .frame(width: size, height: size + (size/2))
-            .foregroundColor(.red)
+            .frame(width: size, height: size * 1.5)
+            .foregroundColor(Color("JournalCardBackground"))
             .cornerRadius(25)
             .shadow(radius: 10)
             .overlay {
                 VStack {
                     ImageJournal(imageUrls: imageUrls, size: size)
                     Text("Testing")
-                        .font(.title)
+                        .font(.title2)
                     Text("dari mana")
                         .font(.caption)
                 }
@@ -37,21 +37,21 @@ struct ImageJournal: View {
         if imageUrls.count == 0 {
             Image("EmptyImage")
                 .resizable()
-                .frame(width: size * 0.9, height: size * 0.9)
+                .frame(width: size * 0.8, height: size * 0.8)
         } else {
             ZStack {
                 if imageUrls.count == 1 {
                     ImageCard(url: imageUrls[0])
                 } else {
                     Rectangle()
-                        .foregroundColor(.gray)
-                        .frame(width: size * 0.95, height: size * 0.95)
-                        .rotationEffect(.degrees(5))
-                    Rectangle()
-                        .foregroundColor(.blue)
+                        .foregroundColor(Color("ImageStackBack"))
                         .frame(width: size * 0.8, height: size * 0.8)
-                        .rotationEffect(.degrees(10))
-                    ImageCard(url: imageUrls.first ?? "", size: size * 0.9)
+                        .rotationEffect(.degrees(4), anchor: .bottomTrailing)
+                    Rectangle()
+                        .foregroundColor(Color("ImageStackMid"))
+                        .frame(width: size * 0.8, height: size * 0.8)
+                        .rotationEffect(.degrees(2), anchor: .bottomTrailing)
+                    ImageCard(url: imageUrls.first ?? "", size: size * 0.8)
                 }
             }
         }

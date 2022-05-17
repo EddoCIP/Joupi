@@ -30,13 +30,28 @@ struct BottomSheet: View {
     @State private var translation: CGSize = .zero
     @State var offsetY: CGFloat = 0
     
+    let gradient = Gradient(colors: [Color("PrimaryColor"), .white])
+    let gradientStop = Gradient(stops: [.init(color: Color("PrimaryColor"), location: 0),
+                                        .init(color: .white, location: 0.8)])
+    
     var body: some View {
         GeometryReader { proxy in
             VStack {
-                BottomSheetContent()
+                BottomSheetContent(offset: $offsetY)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(.brown)
+            .background(
+                //                LinearGradient(gradient: gradient, startPoint: .top, endPoint: .bottom)
+                LinearGradient(
+                    stops:
+                        [
+                            .init(color: Color("PrimaryColor"), location: 0),
+                            .init(color: .white, location: 1)
+                        ],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+            )
             .mask(RoundedRectangle(cornerRadius: 30, style: .continuous))
             .offset(y: translation.height + offsetY)
             .gesture(
@@ -59,7 +74,12 @@ struct BottomSheet: View {
                         }
                     }
             )
+            .onAppear {
+                let percentile = proxy.size.height / 10
+                offsetY = percentile * 4
+            }
             .ignoresSafeArea(edges: .bottom)
+            
         }
     }
 }
@@ -68,26 +88,32 @@ struct BottomSheetContent: View {
     @State private var showSearchBar: Bool = false
     @State private var gridColumns = [GridItem(.adaptive(minimum: 150))]
     @State private var searchBar = ""
-    let data: [[String]] = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
+    @Binding var offset: CGFloat
+    
+    let journalSize = (UIScreen.main.bounds.width / 2) * 0.8
+    let data: [[String]] = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"], ["8", "8", "9"], ["9", "8", "9"]]
     
     var body: some View {
         VStack {
             if showSearchBar == false {
-                HStack {
-                    Spacer()
-                    Text("My Journal")
-                        .font(.title)
-                    Spacer()
-                    Button {
-                        showSearchBar.toggle()
-                    } label: {
-                        Image(systemName: "magnifyingglass")
+                ZStack {
+                    Text("My Coffee Journal")
+                        .font(.title2)
+                    HStack {
+                        Spacer()
+                        Button {
+                            withAnimation {
+                                showSearchBar.toggle()
+                            }
+                        } label: {
+                            Image(systemName: "magnifyingglass")
+                        }
                     }
                 }.padding()
             } else {
                 VStack {
-                    Text("My Journal")
-                        .font(.title)
+                    Text("My Coffee Journal")
+                        .font(.title2)
                     HStack {
                         TextField("Search", text: $searchBar)
                             .onChange(of: searchBar) { newValue in
@@ -95,8 +121,10 @@ struct BottomSheetContent: View {
                             }
                             .textFieldStyle(.roundedBorder)
                         Button("Cancel") {
-                            showSearchBar.toggle()
-                            searchBar = ""
+                            withAnimation {
+                                showSearchBar.toggle()
+                                searchBar = ""
+                            }
                         }
                     }
                 }.padding()
@@ -104,13 +132,16 @@ struct BottomSheetContent: View {
             ScrollView {
                 LazyVGrid(columns: gridColumns) {
                     ForEach(data, id: \.self) { item in
-                        GeometryReader { geo in
-                            //                        NavigationLink(destination: DetailView(item: item)) {
-                            JournalCard(imageUrls: item, size: geo.size.width)
-                            //                        }
-                        }
+                        JournalCard(imageUrls: item, size: journalSize)
+                            .frame(width: journalSize, height: journalSize * 1.5)
+                            .padding()
                     }
-                    .padding()
+                }
+                if offset != .zero {
+                    HStack {
+                        Spacer()
+                    }
+                    .frame(width: journalSize, height: journalSize * 1.5)
                 }
             }
         }

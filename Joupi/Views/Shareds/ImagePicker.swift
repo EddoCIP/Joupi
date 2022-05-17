@@ -36,7 +36,7 @@ class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImageP
         // Create URL
         let url = documents.appendingPathComponent(fileName)
         // Convert to Data
-        if let data = uiImage.pngData() {
+        if let data = uiImage.jpegData(compressionQuality: 1.0) {
             do {
                 try data.write(to: url)
             } catch {
