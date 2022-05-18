@@ -59,7 +59,7 @@ struct MainScreen: View {
             .searchable(text: $searchKeyword, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
             .background(
                 NavigationLink("", isActive: $isAddJournal) {
-                    EmptyView() // nanti formnya taro sini
+                    JournalAdd(journalList: $journalList) // nanti formnya taro sini
                 }
             )
         }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct JoupiApp: App {
+struct JoupiApp: p {
     var body: some Scene {
         WindowGroup {
 //            ContentView()
