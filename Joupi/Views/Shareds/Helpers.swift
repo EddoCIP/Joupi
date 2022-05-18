@@ -29,6 +29,7 @@ struct NavigationBarModifier: ViewModifier {
 //        let b = UINavigationController()
         coloredAppearance.configureWithTransparentBackground()
         coloredAppearance.backgroundColor = .clear
+        coloredAppearance.accessibilityFrame = CGRect(x: 0, y: 0, width: 200, height: 200)
         coloredAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? UIColor.white]
         coloredAppearance.largeTitleTextAttributes = [.foregroundColor: titleColor ?? UIColor.white]
         
@@ -36,6 +37,7 @@ struct NavigationBarModifier: ViewModifier {
         UINavigationBar.appearance().compactAppearance = coloredAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
         UINavigationBar.appearance().tintColor = .systemBlue
+//        UINavigationBar.appearance().prefersLargeTitles = true
 //        a.largeTitleDisplayMode = .always
 //        b.navigationBar.prefersLargeTitles = true
     }
@@ -60,3 +62,17 @@ extension View {
         self.modifier(NavigationBarModifier(backgroundColor: backgroundColor, titleColor: titleColor))
     }
 }
+
+// enable swipe to close
+extension UINavigationController {
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        interactivePopGestureRecognizer?.delegate = nil
+    }
+}
+
+extension UIApplication {
+     func dismissKeyboard() {
+         sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+     }
+ }
