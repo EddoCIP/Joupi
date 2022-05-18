@@ -17,7 +17,7 @@ struct JournalAdd: View {
             Form{
                 CupOfCoffee(journalTitle: $journalTitle)
                 BeansList()
-//                AdditionalInfo()
+                //                AdditionalInfo()
             }
         }
         
@@ -34,8 +34,9 @@ struct CupOfCoffee: View {
         //        Form{
         Section{
             DisclosureGroup (isExpanded: $isProfileSectionExpanded){
-                TextField("Coffee Name", text: $journalTitle)
-                TextField("Insert Location Name", text: .constant(""))
+                TextField("My Journal Title", text: $journalTitle)
+                
+                TextField("My Journal Location", text: .constant(""))
             }label: {
                 Text("Cup Of Coffee")
             }
@@ -48,35 +49,106 @@ struct BeansList: View {
     
     @State var roastDate = Date()
     @State var isProfileSectionExpanded = true
-    @State var selectIndexNotes: String = ""
+    //    @State var selectIndexNotes: String = ""
+    @State var selectIndexVariety: String = ""
+    @State var selectIndexProcess: String = ""
+    @State var selectIndexMethod: String = ""
+    @State var memo: String = "Type here"
     
-    var tasteNotes: [String] = ["Citrus", "Sour", "Fruity"]
+    //    var tasteNotes: [String] = ["Citrus", "Sour", "Fruity"]
+    var variety: [String] = ["Sigararutang", "Kartika", "Gesha"]
+    var process: [String] = ["Natural", "Wash", "Semi Wash"]
+    var Method: [String] = ["V60", "Kalita Wave", "French Press", "Tubruk", "Aeropress"]
     
     var body: some View {
         //        Form{
         Section{
             DisclosureGroup{
-                TextField("Insert Beans Region", text: .constant(""))
+                TextField("Beans Region", text: .constant(""))
                 HStack{
-                    Text("Tasting Notes")
+                    Text("Variety")
                     Spacer()
-                    Picker(selection:$selectIndexNotes, label: Text("Tasting Notes"), content: {
-                        ForEach(tasteNotes, id: \.self) {
+                    Picker(selection:$selectIndexVariety, label: Text("Variety"), content: {
+                        ForEach(variety, id: \.self) {
                             item in
                             Text(item).tag(item)
                         }
                     })
                     .pickerStyle(MenuPickerStyle())
                 }
-                TextField("Region Area", text: .constant(""))
-                TextField("Altitude in MASL", text: .constant(""))
-                TextField("Variety", text: .constant(""))
                 DatePicker("Roast Date",
-                           selection: $roastDate, displayedComponents: [.date]).accentColor(.brown)
-                TextField("Roast Level", text: .constant(""))
-                TextField("process", text: .constant(""))
+                           selection: $roastDate, displayedComponents: [.date]).accentColor(.brown).datePickerStyle(.compact)
+                HStack{
+                    Text("Process")
+                    Spacer()
+                    Picker(selection:$selectIndexVariety, label: Text("process"), content: {
+                        ForEach(process, id: \.self) {
+                            item in
+                            Text(item).tag(item)
+                        }
+                    })
+                    .pickerStyle(MenuPickerStyle())
+                }
+                HStack{
+                    Text("Method")
+                    Spacer()
+                    Picker(selection:$selectIndexMethod, label: Text("method"), content: {
+                        ForEach(Method, id: \.self) {
+                            item in
+                            Text(item).tag(item)
+                        }
+                    })
+                    .pickerStyle(MenuPickerStyle())
+                }
+                HStack{
+                    Text("Temperatur")
+                    Spacer()
+                    TextField("Insert Value", text: .constant(""))
+                    Text("c")
+                }
+                HStack{
+                    Text("Coffee Amount")
+                    Spacer()
+                    TextField("Insert Value", text: .constant(""))
+                    Text("gr")
+                }
+                HStack{
+                    Text("Water Amount")
+                    Spacer()
+                    TextField("Insert Value", text: .constant(""))
+                    Text("ml")
+                }
+                HStack{
+                    TextEditor(text: self.$memo).foregroundColor(self.memo == "Type Here" ? .gray : .primary)
+                        .onAppear{
+                            NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { (noti) in
+                                withAnimation {
+                                    if self.memo == "Type here" {
+                                        self.memo = ""
+                                    }
+                                }
+                            }
+                            NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { (noti) in
+                                withAnimation {
+                                    if self.memo == "" {
+                                        self.memo = "Type here"
+                                    }
+                                }
+                            }
+                        }
+                }
+                HStack{
+                    Button {
+                        
+                    } label: {
+                        Label("Add Photo", systemImage: "plus.square.fill")
+//                            .frame(width: 10, height: 10)
+                    }
+                    Spacer()
+                        .padding()
+                }
             }label: {
-                Text("Additional Info")
+                Text("Details")
             }
         }
         //        }
