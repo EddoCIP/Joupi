@@ -12,7 +12,8 @@ struct JoupiApp: App {
     var body: some Scene {
         WindowGroup {
 //            ContentView()
-            CameraView()
+//            CameraView()
+            MainScreen()
         }
     }
 }
