@@ -54,6 +54,7 @@ struct BeansList: View {
     @State var selectIndexProcess: String = ""
     @State var selectIndexMethod: String = ""
     @State var memo: String = "Type here"
+    @State var isAddJournal: Bool = false
     
     //    var tasteNotes: [String] = ["Citrus", "Sour", "Fruity"]
     var variety: [String] = ["Sigararutang", "Kartika", "Gesha"]
@@ -63,7 +64,7 @@ struct BeansList: View {
     var body: some View {
         //        Form{
         Section{
-            DisclosureGroup{
+            DisclosureGroup(isExpanded: $isProfileSectionExpanded){
                 TextField("Beans Region", text: .constant(""))
                 HStack{
                     Text("Variety")
@@ -78,48 +79,57 @@ struct BeansList: View {
                 }
                 DatePicker("Roast Date",
                            selection: $roastDate, displayedComponents: [.date]).accentColor(.brown).datePickerStyle(.compact)
-                HStack{
-                    Text("Process")
-                    Spacer()
-                    Picker(selection:$selectIndexVariety, label: Text("process"), content: {
-                        ForEach(process, id: \.self) {
-                            item in
-                            Text(item).tag(item)
-                        }
-                    })
-                    .pickerStyle(MenuPickerStyle())
+                VStack(alignment: .leading) {
+                    HStack{
+                        Text("Process")
+                        Spacer()
+                        Picker(selection:$selectIndexVariety, label: Text("process"), content: {
+                            ForEach(process, id: \.self) {
+                                item in
+                                Text(item).tag(item)
+                            }
+                        })
+                        .pickerStyle(MenuPickerStyle())
+                    }
+                    Divider()
+                    HStack{
+                        Text("Method")
+                        Spacer()
+                        Picker(selection:$selectIndexMethod, label: Text("method"), content: {
+                            ForEach(Method, id: \.self) {
+                                item in
+                                Text(item).tag(item)
+                            }
+                        })
+                        .pickerStyle(MenuPickerStyle())
+                    }
+                    Divider()
+                    HStack{
+                        Text("Temperatur")
+                        Spacer()
+                        TextField("Insert Value", text: .constant(""))
+                        Text("c")
+                    }
+                    Divider()
+                    HStack{
+                        Text("Coffee Amount")
+                        Spacer()
+                        TextField("Insert Value", text: .constant(""))
+                        Text("gr")
+                    }
+                    Divider()
+                    HStack{
+                        Text("Water Amount")
+                        Spacer()
+                        TextField("Insert Value", text: .constant(""))
+                        Text("ml")
+                    }
+                    
                 }
                 HStack{
-                    Text("Method")
-                    Spacer()
-                    Picker(selection:$selectIndexMethod, label: Text("method"), content: {
-                        ForEach(Method, id: \.self) {
-                            item in
-                            Text(item).tag(item)
-                        }
-                    })
-                    .pickerStyle(MenuPickerStyle())
-                }
-                HStack{
-                    Text("Temperatur")
-                    Spacer()
-                    TextField("Insert Value", text: .constant(""))
-                    Text("c")
-                }
-                HStack{
-                    Text("Coffee Amount")
-                    Spacer()
-                    TextField("Insert Value", text: .constant(""))
-                    Text("gr")
-                }
-                HStack{
-                    Text("Water Amount")
-                    Spacer()
-                    TextField("Insert Value", text: .constant(""))
-                    Text("ml")
-                }
-                HStack{
-                    TextEditor(text: self.$memo).foregroundColor(self.memo == "Type Here" ? .gray : .primary)
+                    TextEditor(text: self.$memo)
+                        .padding(.leading, -6.0)
+                        .foregroundColor(self.memo == "Type Here" ? .gray : .primary)
                         .onAppear{
                             NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { (noti) in
                                 withAnimation {
@@ -142,11 +152,36 @@ struct BeansList: View {
                         
                     } label: {
                         Label("Add Photo", systemImage: "plus.square.fill")
-//                            .frame(width: 10, height: 10)
-                    }
+
+                    }.padding(.leading, -3.0)
                     Spacer()
-                        .padding()
                 }
+                VStack(alignment: .leading){
+                    Text("Experience Rating")
+                        .padding(.bottom)
+                    HStack{
+                        Label("", systemImage: "star.fill")
+                        Label("", systemImage: "star.fill")
+                        Label("", systemImage: "star.fill")
+                        Label("", systemImage: "star.fill")
+                        Label("", systemImage: "star")
+                    }
+                    .padding(-8.0)
+                }
+                VStack {
+                    Spacer()
+                    Button("Add Journal", action: {
+                        withAnimation {
+                            isAddJournal.toggle()
+                        }
+                    })
+                    .frame(width: 200, height: 50)
+                    .background(.blue)
+                    .foregroundColor(.black)
+                    .cornerRadius(25)
+                }
+                .zIndex(1)
+                .padding()
             }label: {
                 Text("Details")
             }
