@@ -9,24 +9,27 @@ import SwiftUI
 
 struct MainScreen: View {
     @State private var searchKeyword: String = ""
-    @State var coffeeList: [String] = ["V60", "Cappucinno", "Vietnam", "Tubruk", "crema"]
+//    @State var coffeeList: [String] = ["V60", "Cappucinno", "Vietnam", "Tubruk", "crema"]
+    @State var journalList: [JournalModel] = [
+        JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
+        JournalModel(name: "Test", coffeeName: "Tubruk", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
+        JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
+        JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
+        JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
+        JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
+        JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
+        JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
+        JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1)
+    ]
+    @State var isAddJournal: Bool = false
     
     var body: some View {
         NavigationView {
             ZStack {
                 List {
                     ForEach(searchResults, id: \.self) { item in
-                        NavigationLink(destination: Text(item)) {
-                            VStack {
-                                Text(item)
-                                    .font(.title)
-                                Text(item)
-                                    .font(.title)
-                                Text(item)
-                                    .font(.title)
-                                Text(item)
-                                    .font(.title)
-                            }
+                        NavigationLink(destination: Text(item.coffeeName)) {
+                            JournalCard(journal: item, size: 100)
                         }
                     }
                     .onMove(perform: move)
@@ -38,7 +41,9 @@ struct MainScreen: View {
                 VStack {
                     Spacer()
                     Button("Add Journal", action: {
-                        
+                        withAnimation {
+                            isAddJournal.toggle()
+                        }
                     })
                     .frame(width: 200, height: 50)
                     .background(.blue)
@@ -52,19 +57,24 @@ struct MainScreen: View {
             .navigationBarColor(UIColor(named: "TitleBarColor"), UIColor(named: "TitleFontColor"))
             .navigationBarTitleDisplayMode(.large)
             .searchable(text: $searchKeyword, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
+            .background(
+                NavigationLink("", isActive: $isAddJournal) {
+                    EmptyView() // nanti formnya taro sini
+                }
+            )
         }
     }
     
-    var searchResults: [String] {
+    var searchResults: [JournalModel] {
         if searchKeyword.isEmpty {
-            return coffeeList
+            return journalList
         } else {
-            return coffeeList.filter { $0.contains(searchKeyword) }
+            return journalList.filter { $0.coffeeName.lowercased().contains(searchKeyword.lowercased()) }
         }
     }
     
     func move(from source: IndexSet, to destination: Int) {
-        coffeeList.move(fromOffsets: source, toOffset: destination)
+        journalList.move(fromOffsets: source, toOffset: destination)
     }
 }
 

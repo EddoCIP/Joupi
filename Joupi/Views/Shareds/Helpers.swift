@@ -22,7 +22,11 @@ struct NavigationBarModifier: ViewModifier {
     
     init(backgroundColor: UIColor?, titleColor: UIColor?) {
         self.backgroundColor = backgroundColor
+        self.titleColor = titleColor
+        
         let coloredAppearance = UINavigationBarAppearance()
+//        let a = UINavigationItem()
+//        let b = UINavigationController()
         coloredAppearance.configureWithTransparentBackground()
         coloredAppearance.backgroundColor = .clear
         coloredAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? UIColor.white]
@@ -32,6 +36,8 @@ struct NavigationBarModifier: ViewModifier {
         UINavigationBar.appearance().compactAppearance = coloredAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
         UINavigationBar.appearance().tintColor = .systemBlue
+//        a.largeTitleDisplayMode = .always
+//        b.navigationBar.prefersLargeTitles = true
     }
     
     func body(content: Content) -> some View {
