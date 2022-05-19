@@ -9,11 +9,10 @@ import SwiftUI
 
 struct MainScreen: View {
     @State private var searchKeyword: String = ""
-//    @State var coffeeList: [String] = ["V60", "Cappucinno", "Vietnam", "Tubruk", "crema"]
     @State var journalList: [JournalModel] = [
-        JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
-        JournalModel(name: "Test", coffeeName: "Tubruk", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
-        JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
+        JournalModel(name: "ssss", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
+        JournalModel(name: "dddd", coffeeName: "Tubruk", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
+        JournalModel(name: "fff", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
         JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
         JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
         JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
@@ -52,6 +51,7 @@ struct MainScreen: View {
                     HStack {
                         Text("Sort by \(sortBy)")
                             .font(.title3)
+                            .foregroundColor(Color("TitleFontColor"))
                         Spacer()
                         Menu {
                             Picker(selection: $sortBy) {
@@ -66,25 +66,26 @@ struct MainScreen: View {
                                     Image(systemName: "textformat.abc")
                                 }.tag("name")
                             } label: {
-                                Image(systemName: "arrow.up.arrow.down.square")
+//                                Image(systemName: "arrow.up.arrow.down.square")
                             }
                         } label: {
                             Image(systemName: "arrow.up.arrow.down.square")
                         }
+                        .foregroundColor(Color("TitleFontColor"))
                     }
                     .padding(.trailing)
                     .padding(.leading)
                     ZStack {
-                        List {
-                            ForEach(searchResults, id: \.self) { item in
-                                NavigationLink(destination: Text(item.coffeeName)) {
-                                    JournalCard(journal: item, size: 100)
-                                        .padding(.top, 15)
+                        ScrollView {
+                            VStack(alignment: .leading, spacing: 10) {
+                                ForEach(sortedList, id: \.self) { item in
+    //                                NavigationLink(destination: Text(item.coffeeName)) {
+                                        JournalCard(journal: item, size: 100)
+    //                                }
                                 }
                             }
-                            .onMove(perform: move)
-                        }
-                        .listStyle(.plain)
+                        }.frame(maxWidth: .infinity)
+                        
                         VStack {
                             Spacer()
                             Button("Create", action: {
@@ -119,9 +120,18 @@ struct MainScreen: View {
         }
     }
     
-    func move(from source: IndexSet, to destination: Int) {
-        journalList.move(fromOffsets: source, toOffset: destination)
+    var sortedList: [JournalModel] {
+        if sortBy == "date" {
+            return searchResults.sorted { a, b in
+                b.createdDate > a.createdDate
+            }
+        }
+        
+        return journalList.sorted { a, b in
+            b.name > a.name
+        }
     }
+        
 }
 
 struct MainScreen_Previews: PreviewProvider {

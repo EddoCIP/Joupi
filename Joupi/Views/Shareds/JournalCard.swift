@@ -12,17 +12,40 @@ struct JournalCard: View {
     var size: CGFloat
     
     var body: some View {
-        HStack {
-            ImageJournal(imageUrls: journal.photoUrls, size: size)
-            VStack(alignment: .leading) {
-                Text(journal.coffeeName)
-                    .font(.title2)
-                Text(journal.location)
-                    .font(.caption)
-                Text(formatDateToString(date: journal.createdDate, format: "dd-MMMM-YYYY"))
-                    .font(.caption2)
+        //        ZStack {
+        Rectangle()
+            .foregroundColor(.white)
+            .frame(width: UIScreen.main.bounds.width)
+            .fixedSize(horizontal: true, vertical: false)
+            .cornerRadius(25)
+            .shadow(radius: 10)
+            .overlay {
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(journal.name)
+                            .font(.headline)
+                            .fontWeight(.bold)
+                        HStack {
+                            Image(systemName: "cup.and.saucer")
+                            VStack(alignment: .leading) {
+                                Text(journal.location)
+                                    .font(.subheadline)
+                                Text(formatDateToString(date:journal.createdDate, format: "dd/MM/YY"))
+                                    .font(.caption)
+                            }
+                        }
+                        if journal.photoUrls.count > 0 {
+                            ImageJournal(imageUrls: journal.photoUrls, size: size)
+                        }
+                    }
+                    Spacer()
+                }
+                .frame(width: UIScreen.main.bounds.width)
             }
-        }
+        //        }
+        //        .fixedSize(horizontal: false, vertical: true)
+        //        .clipShape(RoundedRectangle(cornerRadius: 25).stroke())
+        //        .shadow(radius: 2)
     }
 }
 
