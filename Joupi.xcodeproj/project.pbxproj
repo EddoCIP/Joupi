@@ -10,6 +10,8 @@
 		2E5734552834CBF2007DCCD5 /* Coffee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5734542834CBF2007DCCD5 /* Coffee.swift */; };
 		FD37D301282F9B40000F248E /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD37D300282F9B40000F248E /* ImagePicker.swift */; };
 		FD37D303282FAEDC000F248E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD37D302282FAEDC000F248E /* Helpers.swift */; };
+		FD692AEF2834A17F00DD23F6 /* JournalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD692AEE2834A17F00DD23F6 /* JournalModel.swift */; };
+		FD692AF128353BD100DD23F6 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD692AF028353BD100DD23F6 /* SearchBar.swift */; };
 		FD91085E282B93DA008CC122 /* JoupiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91085D282B93DA008CC122 /* JoupiApp.swift */; };
 		FD910860282B93DA008CC122 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91085F282B93DA008CC122 /* ContentView.swift */; };
 		FD910862282B93DC008CC122 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD910861282B93DC008CC122 /* Assets.xcassets */; };
@@ -28,6 +30,8 @@
 		2E5734542834CBF2007DCCD5 /* Coffee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coffee.swift; sourceTree = "<group>"; };
 		FD37D300282F9B40000F248E /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		FD37D302282FAEDC000F248E /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		FD692AEE2834A17F00DD23F6 /* JournalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalModel.swift; sourceTree = "<group>"; };
+		FD692AF028353BD100DD23F6 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		FD91085A282B93DA008CC122 /* Joupi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Joupi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD91085D282B93DA008CC122 /* JoupiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoupiApp.swift; sourceTree = "<group>"; };
 		FD91085F282B93DA008CC122 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 		FD91086D282B95D2008CC122 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FD692AEE2834A17F00DD23F6 /* JournalModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -137,7 +142,7 @@
 				FD91087E282B99FA008CC122 /* CameraView.swift */,
 				FD37D300282F9B40000F248E /* ImagePicker.swift */,
 				FD37D302282FAEDC000F248E /* Helpers.swift */,
-				2E5734542834CBF2007DCCD5 /* Coffee.swift */,
+				FD692AF028353BD100DD23F6 /* SearchBar.swift */,
 			);
 			path = Shareds;
 			sourceTree = "<group>";
@@ -216,8 +221,10 @@
 				FD91087B282B97EC008CC122 /* JournalCard.swift in Sources */,
 				FD910875282B9726008CC122 /* JournalDetail.swift in Sources */,
 				FD91087F282B99FA008CC122 /* CameraView.swift in Sources */,
+				FD692AEF2834A17F00DD23F6 /* JournalModel.swift in Sources */,
 				FD91087D282B9801008CC122 /* ImageCarousel.swift in Sources */,
 				FD910860282B93DA008CC122 /* ContentView.swift in Sources */,
+				FD692AF128353BD100DD23F6 /* SearchBar.swift in Sources */,
 				FD91085E282B93DA008CC122 /* JoupiApp.swift in Sources */,
 				FD37D303282FAEDC000F248E /* Helpers.swift in Sources */,
 				FD37D301282F9B40000F248E /* ImagePicker.swift in Sources */,
