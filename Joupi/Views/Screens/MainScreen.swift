@@ -118,6 +118,15 @@ struct MainScreen: View {
                     }
                 )
             }
+            .navigationTitle("My Coffee Journal")
+            .navigationBarColor(UIColor(named: "TitleBarColor"), UIColor(named: "TitleFontColor"))
+            .navigationBarTitleDisplayMode(.large)
+            .searchable(text: $searchKeyword, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
+            .background(
+                NavigationLink("", isActive: $isAddJournal) {
+                    JournalAdd(journalList: $journalList) // nanti formnya taro sini
+                }
+            )
         }
     }
     
