@@ -9,11 +9,11 @@ import SwiftUI
 
 struct MainScreen: View {
     @State private var searchKeyword: String = ""
-//        @State var journalList: [JournalModel] = [
-//            JournalModel(name: "Coba", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
-//            JournalModel(name: "Dapur", coffeeName: "Tubruk", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
-//            JournalModel(name: "Coffee", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
-//        ]
+    //        @State var journalList: [JournalModel] = [
+    //            JournalModel(name: "Coba", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
+    //            JournalModel(name: "Dapur", coffeeName: "Tubruk", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
+    //            JournalModel(name: "Coffee", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
+    //        ]
     @State private var journalList: [JournalModel] = []
     @State var isAddJournal: Bool = false
     @State var isSearching: Bool = false
@@ -114,19 +114,10 @@ struct MainScreen: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .background(
                     NavigationLink("", isActive: $isAddJournal) {
-                        EmptyView() // nanti formnya taro sini
+                        JournalAdd(journalList: $journalList)
                     }
                 )
             }
-            .navigationTitle("My Coffee Journal")
-            .navigationBarColor(UIColor(named: "TitleBarColor"), UIColor(named: "TitleFontColor"))
-            .navigationBarTitleDisplayMode(.large)
-            .searchable(text: $searchKeyword, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
-            .background(
-                NavigationLink("", isActive: $isAddJournal) {
-                    JournalAdd(journalList: $journalList) // nanti formnya taro sini
-                }
-            )
         }
     }
     
