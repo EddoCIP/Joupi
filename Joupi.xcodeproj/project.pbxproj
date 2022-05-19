@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E5734552834CBF2007DCCD5 /* Coffee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5734542834CBF2007DCCD5 /* Coffee.swift */; };
 		FD37D301282F9B40000F248E /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD37D300282F9B40000F248E /* ImagePicker.swift */; };
 		FD37D303282FAEDC000F248E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD37D302282FAEDC000F248E /* Helpers.swift */; };
 		FD692AEF2834A17F00DD23F6 /* JournalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD692AEE2834A17F00DD23F6 /* JournalModel.swift */; };
@@ -59,11 +58,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FD04ED322835DEEC00284498 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				2E5734542834CBF2007DCCD5 /* Coffee.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		FD910851282B93DA008CC122 = {
 			isa = PBXGroup;
 			children = (
 				FD91085C282B93DA008CC122 /* Joupi */,
 				FD91085B282B93DA008CC122 /* Products */,
+				FD04ED322835DEEC00284498 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
