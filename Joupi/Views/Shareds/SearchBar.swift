@@ -18,7 +18,7 @@ struct SearchBar: View {
                 .foregroundColor(.white)
             HStack {
                 Image(systemName: "magnifyingglass")
-                TextField("Search ..", text: $searchText) { startedEditing in
+                TextField("Journal Name or Location ...", text: $searchText) { startedEditing in
                     if startedEditing {
                         withAnimation {
                             searching = true

@@ -15,6 +15,14 @@ func formatDateToString(date: Date, format: String) -> String {
     return formatter.string(from: date)
 }
 
+func formatStringToDate(dateString: String) -> Date {
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.dateFormat = "yyyy-MM-dd"
+    
+    return formatter.date(from: dateString) ?? Date()
+}
+
 struct NavigationBarModifier: ViewModifier {
         
     var backgroundColor: UIColor?

@@ -9,15 +9,19 @@ import SwiftUI
 
 struct MainScreen: View {
     @State private var searchKeyword: String = ""
-//        @State var journalList: [JournalModel] = [
-//            JournalModel(name: "Coba", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
-//            JournalModel(name: "Dapur", coffeeName: "Tubruk", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
-//            JournalModel(name: "Coffee", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
-//        ]
-    @State private var journalList: [JournalModel] = []
+    @State var journalList: [JournalModel] = [
+        JournalModel(name: "Coba", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
+        JournalModel(name: "Dapur", coffeeName: "Tubruk", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
+        JournalModel(name: "Coffee", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1, createdDate: formatStringToDate(dateString: "2022-05-20")),
+    ]
+    //    @State private var journalList: [JournalModel] = []
     @State var isAddJournal: Bool = false
     @State var isSearching: Bool = false
+    @State var isShowDetail: Bool = false
     @State var sortBy: String = "date"
+    @State var selectedJournal: JournalModel?
+    
+    let screenSize = UIScreen.main.bounds.width
     
     var body: some View {
         NavigationView {
@@ -28,12 +32,12 @@ struct MainScreen: View {
                     VStack(alignment: .leading) {
                         Text("Good Afternoon")
                             .font(.largeTitle)
-                            .foregroundColor(Color("TitleFontColor"))
+                            .foregroundColor(Color("PrimaryAccentColor"))
                             .fontWeight(.bold)
                             .padding(.leading, 13)
                         Text(formatDateToString(date: Date.now, format: "EEEE, dd MMM YYYY"))
                             .font(.caption)
-                            .foregroundColor(Color("TitleFontColor"))
+                            .foregroundColor(Color("PrimaryAccentColor"))
                             .padding(.leading, 13)
                         SearchBar(searchText: $searchKeyword, searching: $isSearching)
                     }
@@ -46,7 +50,7 @@ struct MainScreen: View {
                     HStack {
                         Text("Sort by \(sortBy)")
                             .font(.title3)
-                            .foregroundColor(Color("TitleFontColor"))
+                            .foregroundColor(Color("PrimaryAccentColor"))
                         Spacer()
                         Menu {
                             Picker(selection: $sortBy) {
@@ -66,7 +70,7 @@ struct MainScreen: View {
                         } label: {
                             Image(systemName: "arrow.up.arrow.down.square")
                         }
-                        .foregroundColor(Color("TitleFontColor"))
+                        .foregroundColor(Color("PrimaryAccentColor"))
                     }
                     .padding(.trailing)
                     .padding(.leading)
@@ -76,7 +80,11 @@ struct MainScreen: View {
                                 VStack(alignment: .leading, spacing: 10) {
                                     ForEach(sortedList, id: \.self) { item in
                                         //                                NavigationLink(destination: Text(item.coffeeName)) {
-                                        JournalCard(journal: item, size: 100)
+                                        JournalCard(journal: item, size: screenSize)
+                                            .onTapGesture {
+                                                selectedJournal = item
+                                                isShowDetail.toggle()
+                                            }
                                         //                                }
                                     }
                                 }
@@ -103,7 +111,7 @@ struct MainScreen: View {
                                 }
                             })
                             .frame(width: 200, height: 50)
-                            .background(Color("TitleFontColor"))
+                            .background(Color("PrimaryAccentColor"))
                             .foregroundColor(.white)
                             .cornerRadius(30)
                         }
@@ -117,6 +125,11 @@ struct MainScreen: View {
                         EmptyView() // nanti formnya taro sini
                     }
                 )
+                .background(
+                    NavigationLink("", isActive: $isShowDetail) {
+                        Text(selectedJournal?.name ?? "")
+                    }
+                )
             }
         }
     }
@@ -125,19 +138,22 @@ struct MainScreen: View {
         if searchKeyword.isEmpty {
             return journalList
         } else {
-            return journalList.filter { $0.coffeeName.lowercased().contains(searchKeyword.lowercased()) }
+            return journalList.filter { $0.location.lowercased().contains(searchKeyword.lowercased())
+                ||
+                $0.name.lowercased().contains(searchKeyword.lowercased())
+            }
         }
     }
     
     var sortedList: [JournalModel] {
         if sortBy == "date" {
             return searchResults.sorted { a, b in
-                b.createdDate > a.createdDate
+                a.createdDate > b.createdDate // ascending
             }
         }
         
         return journalList.sorted { a, b in
-            b.name.lowercased() > a.name.lowercased()
+            a.name.lowercased() < b.name.lowercased()
         }
     }
     

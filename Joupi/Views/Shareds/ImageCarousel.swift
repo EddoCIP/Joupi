@@ -40,6 +40,7 @@ struct ImageCard: View {
             if let data = try? Data(contentsOf: pngURL, options: [.mappedIfSafe, .uncached]) {
                 Image(uiImage: UIImage(data: data)!)
                     .resizable()
+                    .scaledToFit()
                     .frame(width: width, height: height)
             } else {
                 Image("EmptyImage")
