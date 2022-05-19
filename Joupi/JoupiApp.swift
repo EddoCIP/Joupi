@@ -11,9 +11,9 @@ import SwiftUI
 struct JoupiApp: App {
     var body: some Scene {
         WindowGroup {
-//            ContentView()
+            ContentView()
 //            CameraView()
-            MainScreen()
+//            MainScreen()
         }
     }
 }

@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isStart: Bool = false
+    
     var body: some View {
-        Text("Hello, Bro!")
-            .padding()
+        if isStart {
+            MainScreen()
+        } else {
+            OnboardingView(isStart: $isStart)
+        }
     }
 }
 

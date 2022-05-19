@@ -9,17 +9,12 @@ import SwiftUI
 
 struct MainScreen: View {
     @State private var searchKeyword: String = ""
-    @State var journalList: [JournalModel] = [
-        JournalModel(name: "ssss", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
-        JournalModel(name: "dddd", coffeeName: "Tubruk", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
-        JournalModel(name: "fff", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
-        JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
-        JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
-        JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
-        JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
-        JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
-        JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1)
-    ]
+//        @State var journalList: [JournalModel] = [
+//            JournalModel(name: "Coba", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
+//            JournalModel(name: "Dapur", coffeeName: "Tubruk", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
+//            JournalModel(name: "Coffee", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
+//        ]
+    @State private var journalList: [JournalModel] = []
     @State var isAddJournal: Bool = false
     @State var isSearching: Bool = false
     @State var sortBy: String = "date"
@@ -66,7 +61,7 @@ struct MainScreen: View {
                                     Image(systemName: "textformat.abc")
                                 }.tag("name")
                             } label: {
-//                                Image(systemName: "arrow.up.arrow.down.square")
+                                //                                Image(systemName: "arrow.up.arrow.down.square")
                             }
                         } label: {
                             Image(systemName: "arrow.up.arrow.down.square")
@@ -76,15 +71,29 @@ struct MainScreen: View {
                     .padding(.trailing)
                     .padding(.leading)
                     ZStack {
-                        ScrollView {
-                            VStack(alignment: .leading, spacing: 10) {
-                                ForEach(sortedList, id: \.self) { item in
-    //                                NavigationLink(destination: Text(item.coffeeName)) {
+                        if journalList.count > 0 {
+                            ScrollView {
+                                VStack(alignment: .leading, spacing: 10) {
+                                    ForEach(sortedList, id: \.self) { item in
+                                        //                                NavigationLink(destination: Text(item.coffeeName)) {
                                         JournalCard(journal: item, size: 100)
-    //                                }
+                                        //                                }
+                                    }
                                 }
+                            }.frame(maxWidth: .infinity)
+                        } else {
+                            VStack {
+                                Image(systemName: "cup.and.saucer")
+                                    .resizable()
+                                    .foregroundColor(Color("SemiColor"))
+                                    .frame(width: 144, height: 109)
+                                Text("Create Your First Journal")
+                                    .foregroundColor(Color("SemiColor"))
+                                    .fontWeight(.semibold)
                             }
-                        }.frame(maxWidth: .infinity)
+                            .offset(y: -40)
+                            .frame(width: UIScreen.main.bounds.width)
+                        }
                         
                         VStack {
                             Spacer()
@@ -107,7 +116,7 @@ struct MainScreen: View {
                     NavigationLink("", isActive: $isAddJournal) {
                         EmptyView() // nanti formnya taro sini
                     }
-            )
+                )
             }
         }
     }
@@ -128,10 +137,10 @@ struct MainScreen: View {
         }
         
         return journalList.sorted { a, b in
-            b.name > a.name
+            b.name.lowercased() > a.name.lowercased()
         }
     }
-        
+    
 }
 
 struct MainScreen_Previews: PreviewProvider {
