@@ -32,7 +32,9 @@ struct JournalCard: View {
                 }
                 .padding([.leading, .bottom])
                 if journal.photoUrls.count > 0 {
-                    ImageJournal(imageUrls: journal.photoUrls, size: self.size * 0.9)
+                    Divider()
+                    ImageJournal(imageUrls: journal.photoUrls)
+//                    ImageCarousel(imageUrls: .constant(journal.photoUrls))
                 }
             }
             .frame(width: self.size * 0.9, alignment: .leading)
@@ -53,7 +55,7 @@ struct JournalCard_Previews: PreviewProvider {
 
 struct ImageJournal: View {
     var imageUrls: [String] = []
-    var size: CGFloat
+//    var size: CGFloat
     
     var body: some View {
         if imageUrls.count == 0 {
@@ -61,13 +63,13 @@ struct ImageJournal: View {
                 .resizable()
                 .scaledToFill()
 //                .frame(width: size * 0.8, height: size * 0.8)
-                .frame(width: size, height: size)
         } else {
             ZStack {
                 if imageUrls.count == 1 {
                     ImageCard(url: imageUrls[0])
                 } else {
-                    ImageCard(url: imageUrls.first ?? "", width: size, height: size)
+//                    ImageCard(url: imageUrls.first ?? "", width: size, height: size)
+                    ImageCard(url: imageUrls.first ?? "")
                 }
             }
         }

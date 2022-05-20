@@ -30,8 +30,8 @@ struct CameraView: View {
             .foregroundColor(.white)
             .cornerRadius(10)
         }.sheet(isPresented: self.$showImagePicker) {
-//            ImagePicker(isShown: $showImagePicker, imageUrls: $urls, pickerMode: 1)
-            ImagePicker(isShown: $showImagePicker, image: $image, imageUrl: $url, imageUrls: $urls, pickerMode: imagePickerMode)
+            ImagePicker(isShown: $showImagePicker, imageUrls: $urls, pickerMode: 1)
+//            ImagePicker(isShown: $showImagePicker, image: $image, imageUrl: $url, imageUrls: $urls, pickerMode: imagePickerMode)
         }.confirmationDialog("Testing", isPresented: $showConfirmationDialog) {
             Button("Choose Photo") {
                 self.showImagePicker = true

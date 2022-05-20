@@ -64,15 +64,19 @@ struct OnboardingView: View {
             }
             VStack {
                 Spacer()
-                Button("Get Started") {
+                Button {
                     withAnimation {
                         isStart.toggle()
                     }
+                } label: {
+                    Text("Get Started")
+                        .frame(width: 200, height: 50)
+                        .background(Color("PrimaryAccentColor"))
+                        .foregroundColor(.white)
+                        .cornerRadius(25)
+                        .padding(.bottom, -10)
+                        .padding(.top, 15)
                 }
-                .frame(width: 200, height: 50)
-                .background(Color("PrimaryAccentColor"))
-                .foregroundColor(.white)
-                .cornerRadius(30)
             }
             .zIndex(1)
             .padding()

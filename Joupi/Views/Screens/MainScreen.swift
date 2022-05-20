@@ -83,7 +83,7 @@ struct MainScreen: View {
                                             }
                                     }
                                 }
-                            }.frame(maxWidth: .infinity)
+                            }.frame(maxWidth: screenSize)
                         } else {
                             VStack {
                                 Image(systemName: "cup.and.saucer")
@@ -95,21 +95,25 @@ struct MainScreen: View {
                                     .fontWeight(.semibold)
                             }
                             .offset(y: -40)
-                            .frame(width: UIScreen.main.bounds.width)
+                            .frame(width: screenSize)
                         }
                         
                         VStack {
                             Spacer()
-                            Button("Create", action: {
+                            Button {
                                 withAnimation {
                                     journalVM.selectedJournal = JournalModel()
                                     isAddJournal.toggle()
                                 }
-                            })
-                            .frame(width: 200, height: 50)
-                            .background(Color("PrimaryAccentColor"))
-                            .foregroundColor(.white)
-                            .cornerRadius(30)
+                            } label: {
+                                Text("Create")
+                                    .frame(width: 200, height: 50)
+                                    .background(Color("PrimaryAccentColor"))
+                                    .foregroundColor(.white)
+                                    .cornerRadius(30)
+                                    .padding(.bottom, -10)
+                                    .padding(.top, 15)
+                            }
                             .if(isSearching, transform: { view in
                                 view.hidden()
                             })
