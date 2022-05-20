@@ -17,9 +17,8 @@
 		FD910862282B93DC008CC122 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD910861282B93DC008CC122 /* Assets.xcassets */; };
 		FD910865282B93DC008CC122 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD910864282B93DC008CC122 /* Preview Assets.xcassets */; };
 		FD910871282B9704008CC122 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD910870282B9704008CC122 /* MainScreen.swift */; };
-		FD910873282B9718008CC122 /* JournalAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD910872282B9718008CC122 /* JournalAdd.swift */; };
+		FD910873282B9718008CC122 /* JournalForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD910872282B9718008CC122 /* JournalForm.swift */; };
 		FD910875282B9726008CC122 /* JournalDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD910874282B9726008CC122 /* JournalDetail.swift */; };
-		FD910877282B972F008CC122 /* JournalEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD910876282B972F008CC122 /* JournalEdit.swift */; };
 		FD910879282B97CF008CC122 /* JournalImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD910878282B97CF008CC122 /* JournalImageCard.swift */; };
 		FD91087B282B97EC008CC122 /* JournalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91087A282B97EC008CC122 /* JournalCard.swift */; };
 		FD91087D282B9801008CC122 /* ImageCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91087C282B9801008CC122 /* ImageCarousel.swift */; };
@@ -39,9 +38,8 @@
 		FD910861282B93DC008CC122 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD910864282B93DC008CC122 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FD910870282B9704008CC122 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
-		FD910872282B9718008CC122 /* JournalAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalAdd.swift; sourceTree = "<group>"; };
+		FD910872282B9718008CC122 /* JournalForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalForm.swift; sourceTree = "<group>"; };
 		FD910874282B9726008CC122 /* JournalDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalDetail.swift; sourceTree = "<group>"; };
-		FD910876282B972F008CC122 /* JournalEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEdit.swift; sourceTree = "<group>"; };
 		FD910878282B97CF008CC122 /* JournalImageCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalImageCard.swift; sourceTree = "<group>"; };
 		FD91087A282B97EC008CC122 /* JournalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCard.swift; sourceTree = "<group>"; };
 		FD91087C282B9801008CC122 /* ImageCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCarousel.swift; sourceTree = "<group>"; };
@@ -136,9 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				FD910870282B9704008CC122 /* MainScreen.swift */,
-				FD910872282B9718008CC122 /* JournalAdd.swift */,
+				FD910872282B9718008CC122 /* JournalForm.swift */,
 				FD910874282B9726008CC122 /* JournalDetail.swift */,
-				FD910876282B972F008CC122 /* JournalEdit.swift */,
 				FD04ED352835E18100284498 /* OnboardingView.swift */,
 			);
 			path = Screens;
@@ -241,8 +238,7 @@
 				FD37D303282FAEDC000F248E /* Helpers.swift in Sources */,
 				FD37D301282F9B40000F248E /* ImagePicker.swift in Sources */,
 				FD910879282B97CF008CC122 /* JournalImageCard.swift in Sources */,
-				FD910873282B9718008CC122 /* JournalAdd.swift in Sources */,
-				FD910877282B972F008CC122 /* JournalEdit.swift in Sources */,
+				FD910873282B9718008CC122 /* JournalForm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

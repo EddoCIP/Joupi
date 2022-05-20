@@ -8,6 +8,10 @@
 import Foundation
 import SwiftUI
 
+var variety: [String] = ["Sigararutang", "Kartika", "Gesha"]
+var process: [String] = ["Natural", "Wash", "Semi Wash"]
+var Method: [String] = ["V60", "Kalita Wave", "French Press", "Tubruk", "Aeropress"]
+
 func formatDateToString(date: Date, format: String) -> String {
     let formatter = DateFormatter()
     formatter.dateFormat = format
@@ -84,3 +88,13 @@ extension UIApplication {
          sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
      }
  }
+
+extension View {
+    @ViewBuilder func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
+        }
+    }
+}

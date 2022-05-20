@@ -25,7 +25,7 @@ struct JournalCard: View {
                         Text(journal.location)
                             .font(.subheadline)
                             .foregroundColor(Color("PrimaryAccentColor"))
-                        Text(formatDateToString(date:journal.createdDate, format: "dd/MM/YY"))
+                        Text(formatDateToString(date:journal.createdDate, format: "dd MMM YYYY"))
                             .font(.caption)
                             .foregroundColor(Color("PrimaryAccentColor"))
                     }
@@ -47,7 +47,7 @@ struct JournalCard: View {
 
 struct JournalCard_Previews: PreviewProvider {
     static var previews: some View {
-        JournalCard(journal: JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1), size: UIScreen.main.bounds.width)
+        JournalCard(journal: JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1, temperature: "", coffeeAmount: "", waterAmount: ""), size: UIScreen.main.bounds.width)
     }
 }
 
