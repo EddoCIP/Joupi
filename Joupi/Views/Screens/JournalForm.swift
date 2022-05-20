@@ -67,7 +67,7 @@ struct JournalForm: View {
                 withAnimation {
                     if action == .add{
                         self.journalVM.saveJournal()
-                    }else{
+                    } else {
                         self.journalVM.editJournal()
                     }
                     
@@ -222,6 +222,9 @@ struct BeansList: View {
                                         journalVM.selectedJournal.memo = "Describe what you feel…"
                                     }
                                 }
+                            }
+                            if journalVM.selectedJournal.memo == "" {
+                                journalVM.selectedJournal.memo = "Describe what you feel…"
                             }
                         }
                 }

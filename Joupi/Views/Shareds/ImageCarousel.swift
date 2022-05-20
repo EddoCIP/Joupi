@@ -24,7 +24,7 @@ struct ImageCarousel: View {
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-            .frame(height: .leastNormalMagnitude)
+//            .frame(height: .leastNormalMagnitude)
         }
     }
 }
