@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainScreen: View {
     @State private var searchKeyword: String = ""
+//    @State var coffeeList: [String] = ["V60", "Cappucinno", "Vietnam", "Tubruk", "crema"]
     @State var journalList: [JournalModel] = [
         JournalModel(name: "Coba", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
         JournalModel(name: "Dapur", coffeeName: "Tubruk", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
@@ -136,6 +137,15 @@ struct MainScreen: View {
                     }
                 )
             }
+            .navigationTitle("My Coffee Journal")
+            .navigationBarColor(UIColor(named: "TitleBarColor"), UIColor(named: "TitleFontColor"))
+            .navigationBarTitleDisplayMode(.large)
+            .searchable(text: $searchKeyword, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
+            .background(
+                NavigationLink("", isActive: $isAddJournal) {
+                    JournalAdd(journalList: $journalList) // nanti formnya taro sini
+                }
+            )
         }
     }
     
