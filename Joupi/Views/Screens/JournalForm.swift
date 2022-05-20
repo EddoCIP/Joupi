@@ -172,6 +172,7 @@ struct BeansList: View {
                                     self.journalVM.selectedJournal.temperature = filtered
                                 }
                             }
+                            .keyboardType(.numberPad)
                         Text("c")
                     }
                     Divider()
@@ -185,6 +186,7 @@ struct BeansList: View {
                                     self.journalVM.selectedJournal.coffeeAmount = filtered
                                 }
                             }
+                            .keyboardType(.numberPad)
                         Text("gr")
                     }
                     Divider()
@@ -198,6 +200,7 @@ struct BeansList: View {
                                     self.journalVM.selectedJournal.waterAmount = filtered
                                 }
                             }
+                            .keyboardType(.numberPad)
                         Text("ml")
                     }
                 }
