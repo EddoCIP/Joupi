@@ -9,10 +9,6 @@ import SwiftUI
 
 struct JournalDetail: View {
     
-    var coffee: Coffee
-    
-
-    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
@@ -20,6 +16,6 @@ struct JournalDetail: View {
 
 struct JournalDetail_Previews: PreviewProvider {
     static var previews: some View {
-        JournalDetail(coffee:CoffeeList.topTen.first!)
+        JournalDetail()
     }
 }
