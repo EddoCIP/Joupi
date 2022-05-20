@@ -16,8 +16,10 @@ struct JournalDetail: View {
 
         VStack {
             CupOfCoffeeDetail().padding()
+            CoffeePicDetail(journalList: $journalList)
             BeanListDetail().padding()
             MemoDetails().padding()
+            
             Spacer()
         }
     }
@@ -94,7 +96,7 @@ struct BeanListDetail: View {
             HStack {
                 Text ("Temperatur")
                 Spacer()
-                Text ("89 C")
+                Text ("89 c")
             }.underlineTextField()
         }
     }
