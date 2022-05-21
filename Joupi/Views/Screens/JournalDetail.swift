@@ -9,16 +9,17 @@ import SwiftUI
 
 struct JournalDetail: View {
     
-    @Binding var journalList: [JournalModel]
-    @State var journalTitle: String = ""
+//    @Binding var journalList: [JournalModel]
+//    @State var journalTitle: String = ""
+    @ObservedObject var journalVM: JournalViewModel
     
     var body: some View {
 
         VStack {
-            CupOfCoffeeDetail().padding()
-            CoffeePicDetail(journalList: $journalList)
-            BeanListDetail().padding()
-            MemoDetails().padding()
+            CupOfCoffeeDetail(journalVM: journalVM).padding()
+            CoffeePicDetail(journalVM: journalVM)
+            BeanListDetail(journalVM: journalVM).padding()
+            MemoDetails(journalVM: journalVM).padding()
             
             Spacer()
         }
@@ -26,19 +27,20 @@ struct JournalDetail: View {
 }
 
 struct CupOfCoffeeDetail: View {
+    @ObservedObject var journalVM: JournalViewModel
     
     var body: some View {
 
         VStack {
             HStack {
-                Text("Manual Brew, Japanese Style")
-                    .multilineTextAlignment(.leading)
+                Text(journalVM.selectedJournal.name)
                 .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
+                .fontWeight(.bold)
                 Spacer()
             }
             HStack{
                 Image(systemName: "cup.and.saucer")
-                Text("Baba Coffee @ Ciputat")
+                Text(journalVM.selectedJournal.location)
                 Spacer()
             }
         }
@@ -47,56 +49,58 @@ struct CupOfCoffeeDetail: View {
 
 struct CoffeePicDetail: View {
     
-    @Binding var journalList: [JournalModel]
+//    @Binding var journalList: [JournalModel]
+    @ObservedObject var journalVM: JournalViewModel
     
     var body: some View {
-        ImageCarousel(imageUrls: $journalList[0].photoUrls)
+        ImageCarousel(imageUrls: .constant(journalVM.selectedJournal.photoUrls))
     }
 }
 
 struct BeanListDetail: View {
+    @ObservedObject var journalVM: JournalViewModel
 
     var body: some View {
         VStack {
             HStack {
                 Text ("Method")
                 Spacer()
-                Text ("v60")
+                Text (journalVM.selectedJournal.method)
             }.underlineTextField()
             HStack {
                 Text ("Beans Region")
                 Spacer()
-                Text ("Aceh Gayo")
+                Text (journalVM.selectedJournal.coffeeOrigin)
             }.underlineTextField()
             HStack {
                 Text ("Variety")
                 Spacer()
-                Text ("Sigararutang")
+                Text (journalVM.selectedJournal.variety)
             }.underlineTextField()
             HStack {
                 Text ("Process")
                 Spacer()
-                Text ("Sigararutang")
+                Text (journalVM.selectedJournal.process)
             }.underlineTextField()
             HStack {
                 Text ("Roast Date")
                 Spacer()
-                Text ("May 20, 2022")
+                Text (formatDateToString(date: journalVM.selectedJournal.roastDate, format: "MMMM, dd YYYY"))
             }.underlineTextField()
             HStack {
                 Text ("Coffee Amount")
                 Spacer()
-                Text ("15 g")
+                    Text (journalVM.selectedJournal.coffeeAmount)
             }.underlineTextField()
             HStack {
                 Text ("Water Amount")
                 Spacer()
-                Text ("225 ml/g")
+                    Text (journalVM.selectedJournal.waterAmount)
             }.underlineTextField()
             HStack {
-                Text ("Temperatur")
+                Text ("Temperature")
                 Spacer()
-                Text ("89 c")
+                    Text (journalVM.selectedJournal.temperature)
             }.underlineTextField()
         }
     }
@@ -104,17 +108,25 @@ struct BeanListDetail: View {
 
 struct MemoDetails: View {
     
+    @ObservedObject var journalVM: JournalViewModel
+    
     var body: some View {
+        VStack {
             HStack{
-                Text("Biji kopi ini agak susah didapat sadasdsad")
-                Spacer()
-            }.underlineTextField()
+                Text(journalVM.selectedJournal.memo)
+                    Spacer()
+            }
+            Divider()
+                .frame(height: 1)
+                .background(.gray)
+        }
+        
     }
 }
 
 struct JournalDetail_Previews: PreviewProvider {
     static var previews: some View {
-        JournalDetail(journalList: .constant([JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [],experienceRating: 1, temperature: "",coffeeAmount: "",waterAmount: "")]), journalTitle: "")
+        JournalDetail(journalVM: JournalViewModel())
     }
 }
 

@@ -124,7 +124,8 @@ struct MainScreen: View {
                 }
                 .background(
                     NavigationLink("", isActive: $isShowDetail) {
-                        JournalForm(journalVM: journalVM,action: .edit)
+//                        JournalForm(journalVM: journalVM,action: .edit)
+                        JournalDetail(journalVM: journalVM)
                     }
                 )
             }
