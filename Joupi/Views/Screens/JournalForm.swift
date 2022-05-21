@@ -76,7 +76,6 @@ struct JournalForm: View {
     @State private var isShowAlert : Bool = false
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-   
     
     var body: some View {
         VStack{
@@ -111,10 +110,35 @@ struct JournalForm: View {
                     .padding(.top, 15)
             }
             .alert(isPresented: $isShowAlert) {
-                return Alert(title: Text("Cup of Coffee Cannot Empty"), message: Text("Please fill title & location journal"), dismissButton: .cancel(Text("Dismiss")))
+                return Alert(title: Text("Your journal is incomplete"), message: Text("Please fill the information required in Cup of Coffee section at least"), dismissButton: .cancel(Text("Dismiss")))
             }
             .navigationTitle(action == .add ? "Add Journal" : "Edit Journal")
             .navigationBarTitleDisplayMode(.inline)
+            .if(action == .edit) { view in
+                view
+                    .toolbar{
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button {
+                                self.presentationMode.wrappedValue.dismiss()
+                            } label: {
+                                Text("Back")
+                            }
+                        }
+                    }
+            }
+            .if(action == .add) { view in
+                view
+                    .toolbar{
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button {
+                                self.presentationMode.wrappedValue.dismiss()
+                            } label: {
+                                Label("Back", systemImage: "chevron.left")
+                            }
+                        }
+                    }
+            }
+            .navigationBarBackButtonHidden(true)
         }.background(Color("FormBackgroundColor"))
     }
 }
