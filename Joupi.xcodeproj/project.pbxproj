@@ -23,6 +23,11 @@
 		FD91087B282B97EC008CC122 /* JournalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91087A282B97EC008CC122 /* JournalCard.swift */; };
 		FD91087D282B9801008CC122 /* ImageCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91087C282B9801008CC122 /* ImageCarousel.swift */; };
 		FD91087F282B99FA008CC122 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91087E282B99FA008CC122 /* CameraView.swift */; };
+		FDCAB8E4283939E60012D564 /* View+Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB8E0283939E50012D564 /* View+Modifiers.swift */; };
+		FDCAB8E5283939E60012D564 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB8E1283939E50012D564 /* UIView+Extension.swift */; };
+		FDCAB8E6283939E60012D564 /* AlwaysPopoverModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB8E2283939E50012D564 /* AlwaysPopoverModifier.swift */; };
+		FDCAB8E928393A2F0012D564 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB8E828393A2F0012D564 /* ContentViewController.swift */; };
+		FDCAB8EB2839A5550012D564 /* WithPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCAB8EA2839A5550012D564 /* WithPopover.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +50,11 @@
 		FD91087C282B9801008CC122 /* ImageCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCarousel.swift; sourceTree = "<group>"; };
 		FD91087E282B99FA008CC122 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		FD910880282B9A95008CC122 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FDCAB8E0283939E50012D564 /* View+Modifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Modifiers.swift"; sourceTree = "<group>"; };
+		FDCAB8E1283939E50012D564 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		FDCAB8E2283939E50012D564 /* AlwaysPopoverModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlwaysPopoverModifier.swift; sourceTree = "<group>"; };
+		FDCAB8E828393A2F0012D564 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		FDCAB8EA2839A5550012D564 /* WithPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithPopover.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +161,11 @@
 				FD37D300282F9B40000F248E /* ImagePicker.swift */,
 				FD37D302282FAEDC000F248E /* Helpers.swift */,
 				FD692AF028353BD100DD23F6 /* SearchBar.swift */,
+				FDCAB8E828393A2F0012D564 /* ContentViewController.swift */,
+				FDCAB8E2283939E50012D564 /* AlwaysPopoverModifier.swift */,
+				FDCAB8E1283939E50012D564 /* UIView+Extension.swift */,
+				FDCAB8E0283939E50012D564 /* View+Modifiers.swift */,
+				FDCAB8EA2839A5550012D564 /* WithPopover.swift */,
 			);
 			path = Shareds;
 			sourceTree = "<group>";
@@ -227,17 +242,22 @@
 			files = (
 				FD910871282B9704008CC122 /* MainScreen.swift in Sources */,
 				FD91087B282B97EC008CC122 /* JournalCard.swift in Sources */,
+				FDCAB8E5283939E60012D564 /* UIView+Extension.swift in Sources */,
 				FD910875282B9726008CC122 /* JournalDetail.swift in Sources */,
 				FD04ED362835E18100284498 /* OnboardingView.swift in Sources */,
 				FD91087F282B99FA008CC122 /* CameraView.swift in Sources */,
 				FD692AEF2834A17F00DD23F6 /* JournalModel.swift in Sources */,
 				FD91087D282B9801008CC122 /* ImageCarousel.swift in Sources */,
+				FDCAB8E928393A2F0012D564 /* ContentViewController.swift in Sources */,
 				FD910860282B93DA008CC122 /* ContentView.swift in Sources */,
 				FD692AF128353BD100DD23F6 /* SearchBar.swift in Sources */,
 				FD91085E282B93DA008CC122 /* JoupiApp.swift in Sources */,
 				FD37D303282FAEDC000F248E /* Helpers.swift in Sources */,
 				FD37D301282F9B40000F248E /* ImagePicker.swift in Sources */,
+				FDCAB8EB2839A5550012D564 /* WithPopover.swift in Sources */,
 				FD910879282B97CF008CC122 /* JournalImageCard.swift in Sources */,
+				FDCAB8E4283939E60012D564 /* View+Modifiers.swift in Sources */,
+				FDCAB8E6283939E60012D564 /* AlwaysPopoverModifier.swift in Sources */,
 				FD910873282B9718008CC122 /* JournalForm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -144,14 +144,33 @@ struct BeansList: View {
     @State private var showConfirmationDialog : Bool = false
     @State private var imagePickerMode = 0
     @State private var showImagePicker: Bool = false
+    @State private var isShowPopover: Bool = false
     
     //    let screenSize = UIScreen.main.bounds.width
     let maximumRating: Int = 5
     
     var body: some View {
         Section{
-            DisclosureGroup(isExpanded: $isProfileSectionExpanded){
-                TextField("Beans Origin", text: $journalVM.selectedJournal.coffeeOrigin)
+            DisclosureGroup(isExpanded: $isProfileSectionExpanded) {
+                HStack {
+                    TextField("Beans Origin", text: $journalVM.selectedJournal.coffeeOrigin)
+                    Spacer(minLength: 10)
+                    WithPopover(showPopover: $isShowPopover) {
+                        Button {
+                            withAnimation {
+                                isShowPopover.toggle()
+                            }
+                        } label: {
+                            Image(systemName: "info.circle")
+                        }
+                    } popoverContent: {
+                        Text("Example: Aceh Gayo, Flores Bajawa,\nToraja Kalosi, Bali Kintamani, etc.")
+                            .font(.caption)
+                            .foregroundColor(Color("SemiColor"))
+                            .multilineTextAlignment(.leading)
+                            .padding()
+                    }
+                }
                 
                 DatePicker("Roast Date",
                            selection: $journalVM.selectedJournal.roastDate,
@@ -309,6 +328,15 @@ struct BeansList: View {
         } else {
             return imageCoffeeActive
         }
+    }
+}
+
+struct PopOverCoffeeOriginContent: View {
+    var body: some View {
+        VStack {
+            Text("Hello World")
+        }
+        .frame(width: 300, height: 200)
     }
 }
 
