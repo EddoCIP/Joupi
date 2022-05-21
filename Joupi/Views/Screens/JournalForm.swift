@@ -98,7 +98,8 @@ struct JournalForm: View {
                     .cornerRadius(25)
                     .padding(.bottom, 10)
                     .padding(.top, 15)
-            }.disabled(self.journalVM.validation())
+            }
+//            .disabled(self.journalVM.validation())
                 .alert(isPresented: $isShowAlert) {
                     return Alert(title: Text("Cup of Coffee Cannot Empty"), message: Text("Please fill title & location journal"), dismissButton: .cancel(Text("Dismiss")))
                 }
@@ -136,8 +137,6 @@ struct BeansList: View {
     @State private var showImagePicker: Bool = false
     
     //    let screenSize = UIScreen.main.bounds.width
-    let imageCoffeeActive = Image("ImageCoffeeActive")
-    let imageCoffeeNotActive = Image("ImageCoffeeNonActive")
     let maximumRating: Int = 5
     
     var body: some View {

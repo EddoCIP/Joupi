@@ -12,6 +12,9 @@ var variety: [String] = ["Sigararutang", "Kartika", "Gesha"]
 var process: [String] = ["Natural", "Wash", "Semi Wash", ]
 var Method: [String] = ["V60", "Kalita Wave", "French Press", "Tubruk", "Aeropress"]
 
+let imageCoffeeActive = Image("ImageCoffeeActive")
+let imageCoffeeNotActive = Image("ImageCoffeeNonActive")
+
 func formatDateToString(date: Date, format: String) -> String {
     let formatter = DateFormatter()
     formatter.dateFormat = format

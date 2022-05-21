@@ -20,6 +20,7 @@ struct JournalDetail: View {
             CoffeePicDetail(journalVM: journalVM)
             BeanListDetail(journalVM: journalVM).padding()
             MemoDetails(journalVM: journalVM).padding()
+            ExperienceMemo(journalVM: journalVM).padding()
             Spacer()
         }
         .toolbar{
@@ -224,6 +225,36 @@ struct MemoDetails: View {
             }
         }
         
+    }
+}
+
+struct ExperienceMemo: View {
+    @ObservedObject var journalVM: JournalViewModel
+    let maximumRating: Int = 5
+    
+    var body: some View {
+        if journalVM.selectedJournal.experienceRating > 0 {
+            VStack(alignment: .leading){
+                Text("Experience Rating")
+                    .padding(.bottom)
+                HStack{
+                    ForEach(1..<maximumRating + 1, id: \.self) { number in
+                        image(for: number)
+                            .resizable().frame(width: 43, height: 30)
+                        Spacer()
+                    }
+                }
+                .padding(-8.0)
+                .padding(.bottom)
+            }
+        }
+    }
+    func image(for number: Int) -> Image {
+        if number > journalVM.selectedJournal.experienceRating {
+            return imageCoffeeNotActive
+        } else {
+            return imageCoffeeActive
+        }
     }
 }
 
