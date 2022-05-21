@@ -114,7 +114,7 @@ struct MemoDetails: View {
 
 struct JournalDetail_Previews: PreviewProvider {
     static var previews: some View {
-        JournalDetail(journalList: .constant([JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1)]), journalTitle: "")
+        JournalDetail(journalList: .constant([JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [],experienceRating: 1, temperature: "",coffeeAmount: "",waterAmount: "")]), journalTitle: "")
     }
 }
 
