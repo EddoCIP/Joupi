@@ -56,7 +56,6 @@ class JournalViewModel: ObservableObject {
             }
             return journal
         })
-        clear()
     }
     
     func deleteJournal() {
@@ -77,9 +76,13 @@ struct JournalForm: View {
     @State private var isShowAlert : Bool = false
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+   
     
     var body: some View {
         VStack{
+            HStack{
+                Spacer()
+            }.frame(height: UINavigationBar.appearance().bounds.height)
             Form{
                 CupOfCoffee(journalVM: journalVM)
                 BeansList(journalVM: journalVM)
@@ -107,13 +110,11 @@ struct JournalForm: View {
                     .padding(.bottom, 10)
                     .padding(.top, 15)
             }
-//            .disabled(self.journalVM.validation())
-                .alert(isPresented: $isShowAlert) {
-                    return Alert(title: Text("Cup of Coffee Cannot Empty"), message: Text("Please fill title & location journal"), dismissButton: .cancel(Text("Dismiss")))
-                }
+            .alert(isPresented: $isShowAlert) {
+                return Alert(title: Text("Cup of Coffee Cannot Empty"), message: Text("Please fill title & location journal"), dismissButton: .cancel(Text("Dismiss")))
+            }
             .navigationTitle(action == .add ? "Add Journal" : "Edit Journal")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarHidden(false)
         }.background(Color("FormBackgroundColor"))
     }
 }
@@ -160,7 +161,7 @@ struct BeansList: View {
                         Text("Process")
                         Spacer()
                         Picker(selection: $journalVM.selectedJournal.process, label: Text("process"), content: {
-                            ForEach(process, id: \.self) {
+                            ForEach(processList, id: \.self) {
                                 item in
                                 Text(item).tag(item)
                             }

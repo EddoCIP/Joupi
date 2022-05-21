@@ -41,7 +41,7 @@ struct JournalCard: View {
         }
         .background(.white)
         .mask {
-            RoundedRectangle(cornerRadius: 30, style: .continuous)
+            RoundedRectangle(cornerRadius: 25, style: .continuous)
         }
         .shadow(radius: 3)
     }
