@@ -107,22 +107,11 @@ struct BeanListDetail: View {
     
     var body: some View {
         VStack {
-            if journalVM.selectedJournal.method != "" {
-                VStack {
-                    HStack {
-                        Text ("Method")
-                        Spacer()
-                        Text (journalVM.selectedJournal.method)
-                    }
-                    Divider()
-                        .frame(height: 1)
-                        .background(.gray)
-                }
-            }
+            
             if journalVM.selectedJournal.coffeeOrigin != "" {
                 VStack {
                     HStack {
-                        Text ("Beans Region")
+                        Text ("Beans Origin")
                         Spacer()
                         Text (journalVM.selectedJournal.coffeeOrigin)
                     }
@@ -131,18 +120,31 @@ struct BeanListDetail: View {
                         .background(.gray)
                 }
             }
-            if journalVM.selectedJournal.variety != "" {
-                VStack {
-                    HStack {
-                        Text ("Variety")
-                        Spacer()
-                        Text (journalVM.selectedJournal.variety)
-                    }
-                    Divider()
-                        .frame(height: 1)
-                        .background(.gray)
+            
+            VStack {
+                HStack {
+                    Text ("Roast Date")
+                    Spacer()
+                    Text (formatDateToString(date: journalVM.selectedJournal.roastDate, format: "MMMM, dd YYYY"))
                 }
+                Divider()
+                    .frame(height: 1)
+                    .background(.gray)
             }
+
+//            if journalVM.selectedJournal.variety != "" {
+//                VStack {
+//                    HStack {
+//                        Text ("Variety")
+//                        Spacer()
+//                        Text (journalVM.selectedJournal.variety)
+//                    }
+//                    Divider()
+//                        .frame(height: 1)
+//                        .background(.gray)
+//                }
+//            }
+            
             if journalVM.selectedJournal.process != "" {
                 VStack {
                     HStack {
@@ -155,16 +157,34 @@ struct BeanListDetail: View {
                         .background(.gray)
                 }
             }
-            VStack {
-                HStack {
-                    Text ("Roast Date")
-                    Spacer()
-                    Text (formatDateToString(date: journalVM.selectedJournal.roastDate, format: "MMMM, dd YYYY"))
+            
+            if journalVM.selectedJournal.method != "" {
+                VStack {
+                    HStack {
+                        Text ("Method")
+                        Spacer()
+                        Text (journalVM.selectedJournal.method)
+                    }
+                    Divider()
+                        .frame(height: 1)
+                        .background(.gray)
                 }
-                Divider()
-                    .frame(height: 1)
-                    .background(.gray)
             }
+            
+            if journalVM.selectedJournal.temperature != "" {
+                VStack {
+                    HStack {
+                        Text ("Temperature")
+                        Spacer()
+                        Text (journalVM.selectedJournal.temperature)
+                        Text("C")
+                    }
+                    Divider()
+                        .frame(height: 1)
+                        .background(.gray)
+                }
+            }
+            
             if journalVM.selectedJournal.coffeeAmount != "" {
                 VStack {
                     HStack {
@@ -191,19 +211,6 @@ struct BeanListDetail: View {
                         .background(.gray)
                 }
             }
-            if journalVM.selectedJournal.temperature != "" {
-                VStack {
-                    HStack {
-                        Text ("Temperature")
-                        Spacer()
-                        Text (journalVM.selectedJournal.temperature)
-                        Text("C")
-                    }
-                    Divider()
-                        .frame(height: 1)
-                        .background(.gray)
-                }
-            }
         }
     }
 }
@@ -214,10 +221,9 @@ struct MemoDetails: View {
     
     var body: some View {
         if journalVM.selectedJournal.memo != "" && journalVM.selectedJournal.memo != "Describe what you feel…" {
-            VStack {
+            VStack (alignment: .leading) {
                 HStack{
                     Text(journalVM.selectedJournal.memo)
-                    Spacer()
                 }
                 Divider()
                     .frame(height: 1)
@@ -234,17 +240,20 @@ struct ExperienceMemo: View {
     
     var body: some View {
         if journalVM.selectedJournal.experienceRating > 0 {
-            VStack(alignment: .leading){
-                Text("Experience Rating")
-                    .padding(.bottom)
+            VStack{
+                VStack(alignment: .center) {
+                    Text("Experience Rating")
+                        .padding(.bottom)
+                }
                 HStack{
+                    Spacer()
                     ForEach(1..<maximumRating + 1, id: \.self) { number in
                         image(for: number)
                             .resizable().frame(width: 43, height: 30)
                         Spacer()
                     }
                 }
-                .padding(-8.0)
+                .padding(.top, -8.0)
                 .padding(.bottom)
             }
         }
@@ -258,11 +267,9 @@ struct ExperienceMemo: View {
     }
 }
 
-struct JournalDetail_Previews: PreviewProvider {
-    static var previews: some View {
-        JournalDetail(journalVM: JournalViewModel())
-    }
-}
+
+
+
 
 
 extension Color {
@@ -275,5 +282,17 @@ extension View {
             .overlay(Rectangle().frame(height: 1).padding(.top, 30))
             .foregroundColor(.gray)
             .padding(0)
+    }
+}
+
+
+
+struct JournalDetail_Previews: PreviewProvider {
+    static var previews: some View {
+        Group{
+            JournalDetail(journalVM: JournalViewModel()).previewDisplayName("Testing 1")
+            JournalDetail(journalVM: JournalViewModel(selectedJournal: JournalModel(name: "Gayo", coffeeName: "dirumah", location: "String", coffeeOrigin: "String", variety: "String", roastDate: Date.now, process: "kartika", method: "v60", memo: "asass", photoUrls: [], experienceRating: 1, temperature: "90", coffeeAmount: "15", waterAmount: "20"))).previewDisplayName("Testing 2")
+        }
+        
     }
 }
