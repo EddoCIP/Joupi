@@ -35,7 +35,7 @@ struct JournalModel: Identifiable, Hashable {
         coffeeOrigin = ""
         variety = ""
         roastDate = Date()
-        process = ""
+        process = processList.first ?? ""
         method = ""
         memo = ""
         photoUrls = []
