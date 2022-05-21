@@ -30,6 +30,10 @@ class JournalViewModel: ObservableObject {
         selectedJournal = JournalModel()
     }
     
+    func validation() -> Bool {
+        return selectedJournal.name != "" && selectedJournal.location != ""
+    }
+    
     func saveJournal() {
         selectedJournal.memo = selectedJournal.memo == "Describe what you feel…" ? "" : selectedJournal.memo
         journalList.append(selectedJournal)
@@ -62,6 +66,7 @@ enum JournalAction{
 struct JournalForm: View {
     @ObservedObject var journalVM : JournalViewModel
     var action : JournalAction
+    @State private var isShowAlert : Bool = false
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -72,14 +77,18 @@ struct JournalForm: View {
                 BeansList(journalVM: journalVM)
             }
             Button {
-                withAnimation {
-                    if action == .add{
-                        self.journalVM.saveJournal()
-                    } else {
-                        self.journalVM.editJournal()
+                if (self.journalVM.validation()) {
+                    withAnimation {
+                        if action == .add{
+                            self.journalVM.saveJournal()
+                        } else {
+                            self.journalVM.editJournal()
+                        }
+                        
+                        self.presentationMode.wrappedValue.dismiss()
                     }
-                    
-                    self.presentationMode.wrappedValue.dismiss()
+                } else {
+                    isShowAlert.toggle()
                 }
             } label: {
                 Text(action == .add ? "Add Journal" : "Edit Journal")
@@ -89,7 +98,10 @@ struct JournalForm: View {
                     .cornerRadius(25)
                     .padding(.bottom, 10)
                     .padding(.top, 15)
-            }
+            }.disabled(self.journalVM.validation())
+                .alert(isPresented: $isShowAlert) {
+                    return Alert(title: Text("Cup of Coffee Cannot Empty"), message: Text("Please fill title & location journal"), dismissButton: .cancel(Text("Dismiss")))
+                }
             .navigationTitle(action == .add ? "Add Journal" : "Edit Journal")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(false)

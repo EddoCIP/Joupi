@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 var variety: [String] = ["Sigararutang", "Kartika", "Gesha"]
-var process: [String] = ["Natural", "Wash", "Semi Wash"]
+var process: [String] = ["Natural", "Wash", "Semi Wash", ]
 var Method: [String] = ["V60", "Kalita Wave", "French Press", "Tubruk", "Aeropress"]
 
 func formatDateToString(date: Date, format: String) -> String {
