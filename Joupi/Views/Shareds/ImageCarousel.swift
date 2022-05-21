@@ -24,8 +24,8 @@ struct ImageCarousel: View {
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+//            .frame(height: .leastNormalMagnitude)
         }
-        .frame(height: 200)
     }
 }
 
@@ -34,10 +34,15 @@ struct ImageCard: View {
     
     var body: some View {
         let pngURL = URL(fileURLWithPath: url)
-        let data = try! Data(contentsOf: pngURL, options: [.mappedIfSafe, .uncached])
-        Image(uiImage: UIImage(data: data)!)
-            .resizable()
-            .frame(width: 200, height: 200)
+        if let data = try? Data(contentsOf: pngURL, options: [.mappedIfSafe, .uncached]) {
+            Image(uiImage: UIImage(data: data)!)
+                .resizable()
+                .scaledToFit()
+            //                .scaledToFill()
+        } else {
+            Image("EmptyImage")
+                .resizable()
+        }
     }
 }
 

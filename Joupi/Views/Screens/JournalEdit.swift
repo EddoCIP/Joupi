@@ -8,13 +8,22 @@
 import SwiftUI
 
 struct JournalEdit: View {
+    
+    @Binding var journalList: [JournalModel]
+    @State var journalTitle: String = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Form{
+                CupOfCoffee(journalTitle: $journalTitle)
+                BeansList()
+            }
+        }
     }
 }
 
 struct JournalEdit_Previews: PreviewProvider {
     static var previews: some View {
-        JournalEdit()
+        JournalEdit(journalList: .constant([JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1)]), journalTitle: "")
     }
 }
