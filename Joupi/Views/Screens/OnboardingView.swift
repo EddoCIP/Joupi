@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    @Binding var isStart: Bool
-    
     var body: some View {
         ZStack {
             Color("BackgroundColor")
@@ -66,7 +64,7 @@ struct OnboardingView: View {
                 Spacer()
                 Button {
                     withAnimation {
-                        isStart.toggle()
+                        UserDefaults.standard.set(true, forKey: "isStart")
                     }
                 } label: {
                     Text("Get Started")
@@ -86,6 +84,6 @@ struct OnboardingView: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView(isStart: .constant(false))
+        OnboardingView()
     }
 }

@@ -31,18 +31,26 @@ class JournalViewModel: ObservableObject {
     }
     
     func saveJournal() {
+        selectedJournal.memo = selectedJournal.memo == "Describe what you feel…" ? "" : selectedJournal.memo
         journalList.append(selectedJournal)
         clear()
     }
     
     func editJournal(){
+        selectedJournal.memo = selectedJournal.memo == "Describe what you feel…" ? "" : selectedJournal.memo
         journalList = journalList.map({ journal in
-            if journal.id == selectedJournal.id{
+            if journal.id == selectedJournal.id {
                 return selectedJournal
             }
             return journal
         })
-        
+        clear()
+    }
+    
+    func deleteJournal() {
+        journalList = journalList.filter({ journal in
+            journal.id != selectedJournal.id
+        })
     }
 }
 
@@ -136,7 +144,8 @@ struct BeansList: View {
                     .pickerStyle(MenuPickerStyle())
                 }
                 DatePicker("Roast Date",
-                           selection: $journalVM.selectedJournal.roastDate, displayedComponents: [.date]).accentColor(Color("PrimaryAccentColor")).datePickerStyle(.compact)
+                           selection: $journalVM.selectedJournal.roastDate,
+                           in: ...Date(), displayedComponents: [.date]).accentColor(Color("PrimaryAccentColor")).datePickerStyle(.compact)
                 VStack(alignment: .leading) {
                     HStack{
                         Text("Process")
@@ -153,10 +162,11 @@ struct BeansList: View {
                     HStack{
                         Text("Method")
                         Spacer()
-                        Picker(selection: $journalVM.selectedJournal.method, label: Text("method"), content: {
+                        Picker("Select a method",selection: $journalVM.selectedJournal.method, content: {
                             ForEach(Method, id: \.self) {
                                 item in
-                                Text(item).tag(item)
+                                Text(item)
+                                    .tag(item)
                             }
                         })
                         .pickerStyle(MenuPickerStyle())
@@ -173,7 +183,7 @@ struct BeansList: View {
                                 }
                             }
                             .keyboardType(.numberPad)
-                        Text("c")
+                        Text("C")
                     }
                     Divider()
                     HStack{
@@ -237,15 +247,14 @@ struct BeansList: View {
                         }.padding(.leading, -3.0)
                         Spacer()
                     }
+                }
+                if journalVM.selectedJournal.photoUrls.count > 0 {
                     VStack {
                         if journalVM.selectedJournal.photoUrls.count > 0 {
-                            Divider()
                             ImageCarousel(imageUrls: $journalVM.selectedJournal.photoUrls)
                         }
                     }
-                }.if(journalVM.selectedJournal.photoUrls.count > 0) { view in
-                    view
-                        .frame(minHeight: 250)
+                    .frame(minHeight: 200)
                 }
                 VStack(alignment: .leading){
                     Text("Experience Rating")

@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var isStart: Bool = false
+    @AppStorage("isStart") private var isStart: Bool = false
     
     var body: some View {
         if isStart {
             MainScreen()
         } else {
-            OnboardingView(isStart: $isStart)
+            OnboardingView()
         }
     }
 }
