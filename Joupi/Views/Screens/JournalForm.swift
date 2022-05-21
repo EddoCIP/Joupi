@@ -26,6 +26,14 @@ class JournalViewModel: ObservableObject {
     
     @Published var selectedJournal : JournalModel = JournalModel()
     
+    init() {
+        
+    }
+    
+    init(selectedJournal: JournalModel) {
+        self.selectedJournal = selectedJournal
+    }
+    
     func clear() {
         selectedJournal = JournalModel()
     }
@@ -143,18 +151,8 @@ struct BeansList: View {
     var body: some View {
         Section{
             DisclosureGroup(isExpanded: $isProfileSectionExpanded){
-                TextField("Beans Region", text: $journalVM.selectedJournal.coffeeOrigin)
-                HStack{
-                    Text("Variety")
-                    Spacer()
-                    Picker(selection:$journalVM.selectedJournal.variety, label: Text("Variety"), content: {
-                        ForEach(variety, id: \.self) {
-                            item in
-                            Text(item).tag(item)
-                        }
-                    })
-                    .pickerStyle(MenuPickerStyle())
-                }
+                TextField("Beans Origin", text: $journalVM.selectedJournal.coffeeOrigin)
+                
                 DatePicker("Roast Date",
                            selection: $journalVM.selectedJournal.roastDate,
                            in: ...Date(), displayedComponents: [.date]).accentColor(Color("PrimaryAccentColor")).datePickerStyle(.compact)
