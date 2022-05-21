@@ -135,6 +135,14 @@ struct MainScreen: View {
                     JournalForm(journalVM: journalVM,action: .add)
                 }
             )
+            .onTapGesture {
+                if isSearching {
+                    hideKeyboard()
+                    withAnimation {
+                        isSearching.toggle()
+                    }
+                }
+            }
         }
     }
     
