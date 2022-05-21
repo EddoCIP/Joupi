@@ -9,18 +9,6 @@ import SwiftUI
 
 struct MainScreen: View {
     @State private var searchKeyword: String = ""
-//    @State var coffeeList: [String] = ["V60", "Cappucinno", "Vietnam", "Tubruk", "crema"]
-    @State var journalList: [JournalModel] = [
-        JournalModel(name: "Coba", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
-        JournalModel(name: "Dapur", coffeeName: "Tubruk", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1),
-        JournalModel(name: "Coffee", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1, createdDate: formatStringToDate(dateString: "2022-05-20")),
-        JournalModel(name: "latte", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1, createdDate: formatStringToDate(dateString: "2022-05-20")),
-        JournalModel(name: "tubruk", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1, createdDate: formatStringToDate(dateString: "2022-05-20")),
-        JournalModel(name: "minum dimana hayo", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1, createdDate: formatStringToDate(dateString: "2022-05-20")),
-        JournalModel(name: "sama siapa hayo", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1, createdDate: formatStringToDate(dateString: "2022-05-20")),
-        JournalModel(name: "ah bingung", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1, createdDate: formatStringToDate(dateString: "2022-05-20")),
-    ]
-    //    @State private var journalList: [JournalModel] = []
     @State var isAddJournal: Bool = false
     @State var isSearching: Bool = false
     @State var isShowDetail: Bool = false
@@ -28,6 +16,8 @@ struct MainScreen: View {
     @State var selectedJournal: JournalModel?
     
     let screenSize = UIScreen.main.bounds.width
+    
+    @StateObject var journalVM = JournalViewModel()
     
     var body: some View {
         NavigationView {
@@ -81,20 +71,19 @@ struct MainScreen: View {
                     .padding(.trailing)
                     .padding(.leading)
                     ZStack {
-                        if journalList.count > 0 {
+                        if journalVM.journalList.count > 0 {
                             ScrollView {
                                 VStack(alignment: .leading, spacing: 10) {
-                                    ForEach(sortedList, id: \.self) { item in
-                                        //                                NavigationLink(destination: Text(item.coffeeName)) {
+                                    ForEach(sortList(list: searchResults), id: \.self) { item in
                                         JournalCard(journal: item, size: screenSize)
                                             .onTapGesture {
                                                 selectedJournal = item
+                                                journalVM.selectedJournal = item
                                                 isShowDetail.toggle()
                                             }
-                                        //                                }
                                     }
                                 }
-                            }.frame(maxWidth: .infinity)
+                            }.frame(maxWidth: screenSize)
                         } else {
                             VStack {
                                 Image(systemName: "cup.and.saucer")
@@ -106,41 +95,43 @@ struct MainScreen: View {
                                     .fontWeight(.semibold)
                             }
                             .offset(y: -40)
-                            .frame(width: UIScreen.main.bounds.width)
+                            .frame(width: screenSize)
                         }
                         
                         VStack {
                             Spacer()
-                            Button("Create", action: {
+                            Button {
                                 withAnimation {
+                                    journalVM.selectedJournal = JournalModel()
                                     isAddJournal.toggle()
                                 }
+                            } label: {
+                                Text("Create")
+                                    .frame(width: 200, height: 50)
+                                    .background(Color("PrimaryAccentColor"))
+                                    .foregroundColor(.white)
+                                    .cornerRadius(30)
+                                    .padding(.bottom, -10)
+                                    .padding(.top, 15)
+                            }
+                            .if(isSearching, transform: { view in
+                                view.hidden()
                             })
-                            .frame(width: 200, height: 50)
-                            .background(Color("PrimaryAccentColor"))
-                            .foregroundColor(.white)
-                            .cornerRadius(30)
                         }
                         .zIndex(1)
                         .padding()
                     }
                 }
-                .navigationBarTitleDisplayMode(.inline)
-                .background(
-                    NavigationLink("", isActive: $isAddJournal) {
-                        EmptyView() // nanti formnya taro sini
-                    }
-                )
                 .background(
                     NavigationLink("", isActive: $isShowDetail) {
-                        Text(selectedJournal?.name ?? "")
+                        JournalForm(journalVM: journalVM,action: .edit)
                     }
                 )
             }
             .navigationBarTitleDisplayMode(.inline)
             .background(
                 NavigationLink("", isActive: $isAddJournal) {
-                    JournalAdd(journalList: $journalList) // nanti formnya taro sini
+                    JournalForm(journalVM: journalVM,action: .add)
                 }
             )
         }
@@ -148,23 +139,23 @@ struct MainScreen: View {
     
     var searchResults: [JournalModel] {
         if searchKeyword.isEmpty {
-            return journalList
+            return journalVM.journalList
         } else {
-            return journalList.filter { $0.location.lowercased().contains(searchKeyword.lowercased())
+            return journalVM.journalList.filter { $0.location.lowercased().contains(searchKeyword.lowercased())
                 ||
                 $0.name.lowercased().contains(searchKeyword.lowercased())
             }
         }
     }
     
-    var sortedList: [JournalModel] {
+    func sortList(list: [JournalModel]) -> [JournalModel] {
         if sortBy == "date" {
-            return searchResults.sorted { a, b in
+            return list.sorted { a, b in
                 a.createdDate > b.createdDate // ascending
             }
         }
         
-        return journalList.sorted { a, b in
+        return list.sorted { a, b in
             a.name.lowercased() < b.name.lowercased()
         }
     }

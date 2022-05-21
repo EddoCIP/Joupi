@@ -24,30 +24,26 @@ struct ImageCarousel: View {
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+//            .frame(height: .leastNormalMagnitude)
         }
-        .frame(height: 200)
     }
 }
 
 struct ImageCard: View {
     var url: String
-    var width: CGFloat = 200
-    var height: CGFloat = 200
-        
-        var body: some View {
-            let pngURL = URL(fileURLWithPath: url)
-            //        let data = try! Data(contentsOf: pngURL, options: [.mappedIfSafe, .uncached])
-            if let data = try? Data(contentsOf: pngURL, options: [.mappedIfSafe, .uncached]) {
-                Image(uiImage: UIImage(data: data)!)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: width, height: height)
-            } else {
-                Image("EmptyImage")
-                    .resizable()
-                    .frame(width: width, height: height)
-            }
+    
+    var body: some View {
+        let pngURL = URL(fileURLWithPath: url)
+        if let data = try? Data(contentsOf: pngURL, options: [.mappedIfSafe, .uncached]) {
+            Image(uiImage: UIImage(data: data)!)
+                .resizable()
+                .scaledToFit()
+            //                .scaledToFill()
+        } else {
+            Image("EmptyImage")
+                .resizable()
         }
+    }
 }
 
 struct ImageCarousel_Previews: PreviewProvider {

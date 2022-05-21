@@ -25,14 +25,16 @@ struct JournalCard: View {
                         Text(journal.location)
                             .font(.subheadline)
                             .foregroundColor(Color("PrimaryAccentColor"))
-                        Text(formatDateToString(date:journal.createdDate, format: "dd/MM/YY"))
+                        Text(formatDateToString(date:journal.createdDate, format: "dd MMM YYYY"))
                             .font(.caption)
                             .foregroundColor(Color("PrimaryAccentColor"))
                     }
                 }
                 .padding([.leading, .bottom])
                 if journal.photoUrls.count > 0 {
-                    ImageJournal(imageUrls: journal.photoUrls, size: self.size * 0.9)
+                    Divider()
+                    ImageJournal(imageUrls: journal.photoUrls)
+//                    ImageCarousel(imageUrls: .constant(journal.photoUrls))
                 }
             }
             .frame(width: self.size * 0.9, alignment: .leading)
@@ -47,13 +49,13 @@ struct JournalCard: View {
 
 struct JournalCard_Previews: PreviewProvider {
     static var previews: some View {
-        JournalCard(journal: JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1), size: UIScreen.main.bounds.width)
+        JournalCard(journal: JournalModel(name: "Test", coffeeName: "V60", location: "Jakarta", coffeeOrigin: "Aceh", variety: "Gayo", roastDate: Date.now, process: "Full", method: "Pour", memo: "entah", photoUrls: [], experienceRating: 1, temperature: "", coffeeAmount: "", waterAmount: ""), size: UIScreen.main.bounds.width)
     }
 }
 
 struct ImageJournal: View {
     var imageUrls: [String] = []
-    var size: CGFloat
+//    var size: CGFloat
     
     var body: some View {
         if imageUrls.count == 0 {
@@ -61,13 +63,13 @@ struct ImageJournal: View {
                 .resizable()
                 .scaledToFill()
 //                .frame(width: size * 0.8, height: size * 0.8)
-                .frame(width: size, height: size)
         } else {
             ZStack {
                 if imageUrls.count == 1 {
                     ImageCard(url: imageUrls[0])
                 } else {
-                    ImageCard(url: imageUrls.first ?? "", width: size, height: size)
+//                    ImageCard(url: imageUrls.first ?? "", width: size, height: size)
+                    ImageCard(url: imageUrls.first ?? "")
                 }
             }
         }
