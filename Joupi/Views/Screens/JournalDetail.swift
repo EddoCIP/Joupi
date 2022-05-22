@@ -123,31 +123,33 @@ struct BeanListDetail: View {
                 }
             }
             
-            VStack {
-                HStack {
-                    Text ("Roast Date")
-                    Spacer()
-                    Text (formatDateToString(date: journalVM.selectedJournal.roastDate, format: "MMMM, dd YYYY"))
+            if formatDateToString(date: journalVM.selectedJournal.roastDate, format: "MMMM, dd YYYY") != formatDateToString(date: Date.now, format: "MMMM, dd YYYY") {
+                VStack {
+                    HStack {
+                        Text ("Roast Date")
+                        Spacer()
+                        Text (formatDateToString(date: journalVM.selectedJournal.roastDate, format: "MMMM, dd YYYY"))
+                    }
+                    Divider()
+                        .frame(height: 1)
+                        .background(.gray)
                 }
-                Divider()
-                    .frame(height: 1)
-                    .background(.gray)
             }
-
-//            if journalVM.selectedJournal.variety != "" {
-//                VStack {
-//                    HStack {
-//                        Text ("Variety")
-//                        Spacer()
-//                        Text (journalVM.selectedJournal.variety)
-//                    }
-//                    Divider()
-//                        .frame(height: 1)
-//                        .background(.gray)
-//                }
-//            }
             
-            if journalVM.selectedJournal.process != "" {
+            //            if journalVM.selectedJournal.variety != "" {
+            //                VStack {
+            //                    HStack {
+            //                        Text ("Variety")
+            //                        Spacer()
+            //                        Text (journalVM.selectedJournal.variety)
+            //                    }
+            //                    Divider()
+            //                        .frame(height: 1)
+            //                        .background(.gray)
+            //                }
+            //            }
+            
+            if journalVM.selectedJournal.process != "" && journalVM.selectedJournal.process != processList.first ?? "" {
                 VStack {
                     HStack {
                         Text ("Process")
@@ -160,7 +162,7 @@ struct BeanListDetail: View {
                 }
             }
             
-            if journalVM.selectedJournal.method != "" {
+            if journalVM.selectedJournal.method != "" && journalVM.selectedJournal.method != Method.first ?? "" {
                 VStack {
                     HStack {
                         Text ("Method")
@@ -269,11 +271,6 @@ struct ExperienceMemo: View {
     }
 }
 
-
-
-
-
-
 extension Color {
     static let darkPink = Color(red: 208 / 255, green: 45 / 255, blue: 208 / 255)
 }
@@ -286,8 +283,6 @@ extension View {
             .padding(0)
     }
 }
-
-
 
 struct JournalDetail_Previews: PreviewProvider {
     static var previews: some View {

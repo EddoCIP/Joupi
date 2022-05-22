@@ -8,9 +8,9 @@
 import Foundation
 import SwiftUI
 
-var variety: [String] = ["Sigararutang", "Kartika", "Gesha"]
-var processList: [String] = ["Wash", "Natural", "Semi Wash", ]
-var Method: [String] = ["V60", "Kalita Wave", "French Press", "Tubruk", "Aeropress"]
+var variety: [String] = ["Select Variety", "Sigararutang", "Kartika", "Gesha"]
+var processList: [String] = ["Select Process", "Wash", "Natural", "Semi Wash", ]
+var Method: [String] = ["Select Method","V60", "Kalita Wave", "French Press", "Tubruk", "Aeropress"]
 
 let imageCoffeeActive = Image("ImageCoffeeActive")
 let imageCoffeeNotActive = Image("ImageCoffeeNonActive")
