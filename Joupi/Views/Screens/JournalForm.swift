@@ -235,7 +235,7 @@ struct BeansList: View {
                                 }
                             }
                             .keyboardType(.numberPad)
-                        Text("C")
+                        Text("°C")
                     }
                     Divider()
                     HStack{

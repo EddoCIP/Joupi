@@ -181,7 +181,7 @@ struct BeanListDetail: View {
                         Text ("Temperature")
                         Spacer()
                         Text (journalVM.selectedJournal.temperature)
-                        Text("C")
+                        Text("°C")
                     }
                     Divider()
                         .frame(height: 1)
