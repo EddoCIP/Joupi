@@ -83,6 +83,7 @@ struct JournalForm: View {
                 Spacer()
             }.frame(height: UINavigationBar.appearance().bounds.height)
             Form{
+                
                 CupOfCoffee(journalVM: journalVM)
                 BeansList(journalVM: journalVM)
             }
@@ -150,12 +151,9 @@ struct CupOfCoffee: View {
     
     var body: some View {
         Section{
-            DisclosureGroup (isExpanded: $isProfileSectionExpanded){
-                TextField("My Journal Title", text: $journalVM.selectedJournal.name)
-                TextField("My Journal Location", text: $journalVM.selectedJournal.location)
-            }label: {
-                Text("Cup Of Coffee")
-            }
+            TextField("My Journal Title", text: $journalVM.selectedJournal.name)
+                .font(.title2.bold())
+            TextField("My Journal Location", text: $journalVM.selectedJournal.location)
         }
     }
 }
