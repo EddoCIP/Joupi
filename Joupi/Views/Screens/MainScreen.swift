@@ -68,9 +68,8 @@ struct MainScreen: View {
                         }
                         .foregroundColor(Color("PrimaryAccentColor"))
                     }
-                    .padding(.trailing)
-                    .padding(.leading)
-                    ZStack {
+                    .padding(.horizontal)
+                    VStack {
                         if journalVM.journalList.count > 0 {
                             ScrollView {
                                 VStack(alignment: .leading, spacing: 10) {
@@ -86,6 +85,7 @@ struct MainScreen: View {
                             }.frame(maxWidth: screenSize)
                         } else {
                             VStack {
+                                Spacer()
                                 Image(systemName: "cup.and.saucer")
                                     .resizable()
                                     .foregroundColor(Color("SemiColor"))
@@ -93,38 +93,42 @@ struct MainScreen: View {
                                 Text("Create Your First Journal")
                                     .foregroundColor(Color("SemiColor"))
                                     .fontWeight(.semibold)
+                                Spacer()
                             }
                             .offset(y: -40)
                             .frame(width: screenSize)
                         }
-                        
-                        VStack {
-                            Spacer()
-                            Button {
-                                withAnimation {
-                                    journalVM.selectedJournal = JournalModel()
-                                    isAddJournal.toggle()
-                                }
-                            } label: {
-                                Text("Create")
-                                    .frame(width: 200, height: 50)
-                                    .background(Color("PrimaryAccentColor"))
-                                    .foregroundColor(.white)
-                                    .cornerRadius(30)
-                                    .padding(.bottom, -10)
-                                    .padding(.top, 15)
-                            }
-                            .if(isSearching, transform: { view in
-                                view.hidden()
-                            })
-                        }
-                        .zIndex(1)
-                        .padding()
                     }
+                    //                        VStack {
+                    HStack {
+                        Spacer()
+                        Button {
+                            withAnimation {
+                                journalVM.selectedJournal = JournalModel()
+                                isAddJournal.toggle()
+                            }
+                        } label: {
+                            Text("Create")
+                                .frame(width: 200, height: 50)
+                                .background(Color("PrimaryAccentColor"))
+                                .foregroundColor(.white)
+                                .cornerRadius(25)
+                                .padding(.bottom, -2)
+    //                                .padding(.top, 7)
+                        }
+                        .if(isSearching, transform: { view in
+                            view.hidden()
+                        })
+                            //                        }
+                            //                        .zIndex(1)
+                        .padding()
+                            Spacer()
+                    }
+                    .background(Color("FormBackgroundColor"))
                 }
                 .background(
                     NavigationLink("", isActive: $isShowDetail) {
-//                        JournalForm(journalVM: journalVM,action: .edit)
+                        //                        JournalForm(journalVM: journalVM,action: .edit)
                         JournalDetail(journalVM: journalVM)
                     }
                 )
