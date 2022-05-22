@@ -292,6 +292,7 @@ struct BeansList: View {
                 VStack {
                     HStack{
                         Button {
+                            hideKeyboard()
                             self.showConfirmationDialog = true
                         } label: {
                             Label("Add Photo", systemImage: "plus.square.fill")
