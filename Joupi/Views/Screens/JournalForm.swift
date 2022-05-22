@@ -172,8 +172,9 @@ struct BeansList: View {
     let maximumRating: Int = 5
     
     var body: some View {
-        Section {
-            DisclosureGroup(isExpanded: $isProfileSectionExpanded) {
+        Section (header: Text("Details")
+            .foregroundColor(.black).fontWeight(.bold)) {
+//            DisclosureGroup(isExpanded: $isProfileSectionExpanded) {
                 HStack {
                     TextField("Beans Origin", text: $journalVM.selectedJournal.coffeeOrigin)
                     Spacer(minLength: 10)
@@ -323,9 +324,10 @@ struct BeansList: View {
                     .padding(-8.0)
                     .padding(.bottom)
                 }
-            } label: {
-                Text("Details")
-            }.sheet(isPresented: self.$showImagePicker) {
+            }
+//            .headerProminence(.increased)
+//            label: {Text("Details")}
+            .sheet(isPresented: self.$showImagePicker) {
                 ImagePicker(isShown: $showImagePicker, imageUrls: $journalVM.selectedJournal.photoUrls, pickerMode: imagePickerMode)
             }
             .confirmationDialog("Testing", isPresented: $showConfirmationDialog) {
@@ -338,10 +340,9 @@ struct BeansList: View {
                     self.imagePickerMode = 0
                 }
                 Button("Cancel", role: .cancel) {
-                    
                 }
             }
-        }
+//        }
     }
     
     func image(for number: Int) -> Image {
