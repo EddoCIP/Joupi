@@ -150,7 +150,7 @@ struct CupOfCoffee: View {
     @ObservedObject var journalVM: JournalViewModel
     
     var body: some View {
-        Section{
+        Section {
             TextField("My Journal Title", text: $journalVM.selectedJournal.name)
                 .font(.title2.bold())
             TextField("My Journal Location", text: $journalVM.selectedJournal.location)
@@ -172,7 +172,7 @@ struct BeansList: View {
     let maximumRating: Int = 5
     
     var body: some View {
-        Section{
+        Section {
             DisclosureGroup(isExpanded: $isProfileSectionExpanded) {
                 HStack {
                     TextField("Beans Origin", text: $journalVM.selectedJournal.coffeeOrigin)
