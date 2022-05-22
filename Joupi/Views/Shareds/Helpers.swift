@@ -10,7 +10,7 @@ import SwiftUI
 
 var variety: [String] = ["Select Variety", "Sigararutang", "Kartika", "Gesha", "Others"]
 var processList: [String] = ["Select Process", "Honey", "Natural", "Full Wash", "Semi Wash", "Others"]
-var Method: [String] = ["Select Method", "Aeropress", "Coffee Maker","French Press", "Moka Pot", "Tubruk",   "V60","Vietnam Drip", "Others"]
+var Method: [String] = ["Select Method", "Aeropress", "Coffee Maker","French Press", "Moka Pot", "Tubruk", "V60","Vietnam Drip", "Others"]
 
 let imageCoffeeActive = Image("ImageCoffeeActive")
 let imageCoffeeNotActive = Image("ImageCoffeeNonActive")
