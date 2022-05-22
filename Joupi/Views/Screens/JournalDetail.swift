@@ -15,7 +15,7 @@ struct JournalDetail: View {
     @State private var isShowAlert: Bool = false
     
     var body: some View {
-        VStack {
+        ScrollView {
             CupOfCoffeeDetail(journalVM: journalVM).padding()
             CoffeePicDetail(journalVM: journalVM)
             BeanListDetail(journalVM: journalVM).padding()
@@ -23,6 +23,7 @@ struct JournalDetail: View {
             ExperienceMemo(journalVM: journalVM).padding()
             Spacer()
         }
+        .frame(minWidth: UIScreen.main.bounds.width * 0.9)
         .toolbar{
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
@@ -98,6 +99,7 @@ struct CoffeePicDetail: View {
     var body: some View {
         if journalVM.selectedJournal.photoUrls.count > 0 {
             ImageCarousel(imageUrls: .constant(journalVM.selectedJournal.photoUrls))
+                .frame(minWidth: UIScreen.main.bounds.width * 0.9, minHeight: 200)
         }
     }
 }
